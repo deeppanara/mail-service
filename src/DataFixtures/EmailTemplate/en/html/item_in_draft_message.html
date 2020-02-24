@@ -1,0 +1,42 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_first_name}},</h2>
+        <p>Your ad "{{item_title}}" , ID: {{item_id}} on {{ service }} is still just a draft since {{create_date}}.
+            It is not yet visible. To change that and complete your ad-placement, click here: {{paa_link_with_id_token}}.
+
+            Don’t forget to check out our tips on how to improve your ads performance : <a href=”{{ site_url }}/faq#improve-your-ads-performance”> FAQ-page under "Improving your ads'‘performance" </a>.
+            If you have any questions, please feel free to contact us: <a href="mailto:{{support_email}}"> {{support_email}}</a>.
+
+        </p>
+        <p>
+            Cheers,<br />
+            {{ service }}-Team
+        </p>
+    </td>
+</tr>

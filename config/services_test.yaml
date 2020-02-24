@@ -1,9 +1,17 @@
 services:
+    # default configuration for services in *this* file
     _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: true
-
-    # If you need to access services in a test, create an alias
-    # and then fetch that alias from the container. As a convention,
-    # aliases are prefixed with test. For example:
-    #
-    # test.App\Service\MyService: '@App\Service\MyService'
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        public: true
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']

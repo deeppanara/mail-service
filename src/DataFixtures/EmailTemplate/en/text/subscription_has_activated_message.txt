@@ -1,0 +1,11 @@
+Dear {{ user_name }},
+as you may know, your {{ subscription_name }}-subscription has activated on {{ activation_date }}.
+Please note, that you will need to reactivate your ads.
+To reactivate your expired Ads, Visit : {{ ad_management_link_with_ID_token }}.
+And if you have any questions, please feel free to contact us: {{ support_email }}.
+Kind regards
+    Your  {{ service }}-team
+
+{% if support_phone_number is defined %}
+You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{ support_phone_number }}
+{% endif %}

@@ -23,6 +23,7 @@
         "symfony/security-bundle": "5.0.*",
         "symfony/serializer-pack": "*",
         "symfony/string": "5.0.*",
+        "symfony/swiftmailer-bundle": "^3.4",
         "symfony/translation": "5.0.*",
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
@@ -30,8 +31,10 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^5.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },

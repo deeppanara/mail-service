@@ -1,0 +1,27 @@
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_full_name}},</h2>
+        <p>
+            You advert <span class="bold">{{ad_title}}</span>
+            {% if (ad_state == 'NEW_AD_SENT_TO_MODERATION') %}
+                is sent for admin approval.
+            {% elseif (ad_state == 'CHANGES_SENT_TO_MODERATION') %}
+                changes sent for admin approval.
+            {% elseif (ad_state == 'NEW_AD_APPROVED') %}
+                is approved by admin.
+            {% elseif (ad_state == 'NEW_AD_REJECTED') %}
+                is rejected by admin.
+            {% elseif (ad_state == 'CHANGES_APPROVED') %}
+                changes approved by admin.
+            {% elseif (ad_state == 'CHANGES_REJECTED') %}
+                changes rejected by admin.
+            {% endif %}
+        </p>
+
+        <p></p>
+        <p>
+            Kind regards,<br />
+            {{ service }}-Team
+        </p>
+    </td>
+</tr>

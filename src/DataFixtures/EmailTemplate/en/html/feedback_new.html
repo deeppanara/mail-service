@@ -1,0 +1,53 @@
+{% set container = fetch_container_instance() %}
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear <b>webmaster</b>,</h2>
+        <p>Below is the feedback from site, please review and reply,</p>
+        <p>Feedback Type: {{ type }}</p>
+        {% if issue is defined %}
+        <p>Feedback Issue: {{ issue }}</p>
+        {% endif %}
+        {% if name is defined and name|length > 0 %}
+        <p>Name: {{ name }}</p>
+        {% endif %}
+        {% if email is defined and email|length > 0 %}
+        <p>Email: {{ email }}</p>
+        {% endif %}
+        {% if ad_id is defined and ad_id|length > 0 %}
+        <p>Ad Ids: {{ ad_id }}</p>
+        {% endif %}
+        {% if comment is defined and comment|length > 0 %}
+        <p>Comments:</p>
+        {{comment|raw}}
+        {% endif %}
+        <br /><br />
+        Cheers,
+        {{ service }} Team
+    </td>
+</tr>

@@ -1,0 +1,59 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_first_name}},</h2>
+        <p>Congratulations on verifying your <a href="{{site_url}}"> {{ service }}</a>-business account.</p>
+
+        <p>You can now:</p>
+
+        <ul>
+            <li><a href="{{ place_ads }}">Place ads</a></li>
+            <li><a href="{{ complete_your_profile }}">complete your company profile</a></li>
+        </ul>
+        <p>
+            Tipp: Before placing ads, we strongly recommend, to
+            <a href="{{complete_your_profile}}"> complete your company profile</a>.
+            In our experience, the more detailed your profile is, the more potential buyers contact you.
+        </p>
+
+        <p> To place ads more effectively, we would recommend a subscription package.
+            You can read more about the properties and benefits on
+            <a href="{{ subscriptions_page }}">our subscription options page</a>.
+        </p>
+
+        <p>If you have any questions, please feel free to contact us:
+            <a href="mailto:{{support_email}}?Subject=" target="_top"> {{support_email}}</a>.
+        </p>
+        <p></p>
+
+        <p>
+            Kind regards,<br />
+            {{service}}-Team
+        </p>
+    </td>
+</tr>

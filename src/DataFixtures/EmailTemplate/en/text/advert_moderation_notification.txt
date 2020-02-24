@@ -1,0 +1,19 @@
+Dear {{user_detail.first_name}},<br /><br />
+
+You advert {{ad_title}}
+{% if (ad_state == 'NEW_AD_SENT_TO_MODERATION') %}
+    is sent for admin approval.
+{% elseif (ad_state == 'CHANGES_SENT_TO_MODERATION') %}
+    changes sent for admin approval.
+{% elseif (ad_state == 'NEW_AD_APPROVED') %}
+    is approved by admin.
+{% elseif (ad_state == 'NEW_AD_REJECTED') %}
+    is rejected by admin.
+{% elseif (ad_state == 'CHANGES_APPROVED') %}
+    changes approved by admin.
+{% elseif (ad_state == 'CHANGES_REJECTED') %}
+    changes rejected by admin.
+{% endif %}
+
+Kind regards,<br />
+{{ service }}-Team

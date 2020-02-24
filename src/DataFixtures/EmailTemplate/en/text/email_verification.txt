@@ -1,0 +1,6 @@
+{{ email_verification_link }}
+
+Open it up to activate your account.
+
+Cheers,
+Fiare Team

@@ -1,0 +1,12 @@
+Dear recipient,
+we’ve noticed, that you haven’t placed any ad yet.
+We’d love to have you actively on board and make a good sale. To get started: Just <LINK href="{{ item_new_without_login }}"> login and click “Place an ad”</LINK>.
+Don’t forget to check out our tips on how to improve your ads performance : <LINK href=”{{site_url}}/faq#improve-your-ads-performance”> FAQ-page under “Improving your ads ‘performance” </LINK>.
+If you have forgotten your password you can reset it, by <LINK href=”{{site_url}}/request_password”>requesting a new password</LINK>.
+If you have any questions, please feel free to contact us: <mailto: LINK> {{email_address}}</LINK>.
+Kind regards
+  Your  {{portal_name}}-team
+
+{% if support_phone_number is defined %}
+    You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{customer_support_number}}
+{% endif %}

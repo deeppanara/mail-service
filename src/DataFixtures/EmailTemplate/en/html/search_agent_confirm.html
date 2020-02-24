@@ -1,0 +1,52 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_full_name}},</h2>
+        <p>
+            thank you for placing a search agent ( "{{search_agent_name}}") at <a> {{service}} </a>.
+
+            You will receive an email when a matching  object was placed.
+
+            To edit your search agent properties here <a href="{{edit_search_agent_link}}"> {{edit_search_agent_name}} </a>.
+
+            You can also place another search agent! Just login and click 'Create A Search Alert'. To do so, login to {{service}}, <a href="{{ item_list_link }}"> click here </a>.
+
+            If you haven’t placed a search agent at <a href="{{site_url}}"> {{service}} </a>, please feel free to contact us via our support feedback form  <a href="mailto:{{support_email}}?subject=I didn’t place a search agent" target="_top"> {{support_email}}</a>.
+
+            To get more tips on how to improve you search ads, check out our <a href="{{site_url}}/faq#improve-your-ads-performance"> FAQ-page</a>,.
+        </p>
+        <p>
+            Kind regards,<br />
+            {{ service }}-Team
+
+            {% if support_phone_number is defined and support_phone_number %}
+            You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{support_phone_number}}
+            {% endif %}
+        </p>
+    </td>
+</tr>

@@ -1,0 +1,10 @@
+Dear {{user_first_name}},
+
+we’ve just noticed, that you have several ads in DRAFT-stage..
+That means there are not yet visible. To change that and complete your ad-placements, click here:{{my-ads-filter-drafts}}
+
+Don’t forget to check out our tips on how to improve your ads performance : <a href=”{{site_url}}/faq#improve-your-ads-performance”> FAQ-page under “Improving your ads ‘performance” </a>.
+If you have any questions, please feel free to contact us: <a href="mailto:{{support_email}}"> {{support_email}}</a>.
+
+Kind regards
+Your  {{service}}-team

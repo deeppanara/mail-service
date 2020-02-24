@@ -1,0 +1,60 @@
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_detail.first_name}},</h2>
+        <p>You have successfully purchased following items, below is your order detail..</p>
+
+        <p><span class="bold">Order number:</span> {{order_number}}</p>
+
+        <p><span class="bold">Payment method:</span> {{payment_method}}</p>
+
+        {% if items is defined and items|length %}
+        <p>
+        <table width="100%" border="1" class="order-list">
+            <tr>
+                <td align="left" width="15%"><b>{{ 'Item No.' }}</b></td>
+                <td align="left"><b>{{ 'Item Name' }}</b></td>
+                <td align="left" width="15%"><b>{{ 'Amount' }}</b></td>
+            </tr>
+            {% set i = 1 %}
+            {% for key, item in items %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td>
+                        {{ item.title }}<br>
+                    </td>
+                    <td align="right">{{ format_currency(item.amount, _locale) }}</td>
+                </tr>
+                {% set i = i + 1 %}
+            {% endfor %}
+            {% set subTotalLabel = 'Sub Total' %}
+            {% set subTotalAmount = format_currency(sub_total, _locale) %}
+            {% if (vat_type is defined and vat_type == '1') %}
+                {% set subTotalLabel = 'Price without vat' %}
+                {% set subTotalAmount = format_currency(amount_without_vat, _locale) %}
+            {% endif %}
+            
+            {% if ((vat_type is defined and (vat_type == '1' or vat_type == '2')) and vat_amount > 0) %}
+	            <tr>
+	                <td colspan="2" align="right">{{ subTotalLabel }}</td>
+	                <td align="right"><b>{{ subTotalAmount }}</b></td>
+	            </tr>
+	            <tr>
+	                <td colspan="2" align="right">{{ 'VAT ('~vat_percentage~'%)' }}</td>
+	                <td align="right"><b>{{ format_currency(vat_amount, _locale) }}</b></td>
+	            </tr>
+            {% endif %}
+            <tr>
+                <td colspan="2" align="right">{{ 'Total' }}</td>
+                <td align="right"><b>{{ format_currency(grand_total, _locale) }}</b></td>
+            </tr>
+        </table>
+        </p>
+{% endif %}
+
+        <p></p>
+        <p>
+            Kind regards,<br />
+            {{ service }}-Team
+        </p>
+    </td>
+</tr>

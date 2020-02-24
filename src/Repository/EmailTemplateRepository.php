@@ -14,7 +14,7 @@ use App\Entity\EmailTemplate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class ProductRepository extends ServiceEntityRepository
+class EmailTemplateRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

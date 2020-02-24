@@ -1,0 +1,7 @@
+Hello {{name}},
+Below is the reply of your feedback,
+
+{{reply|raw}}
+
+Cheers,
+Fiare Team

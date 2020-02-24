@@ -1,0 +1,10 @@
+Dear {{user_first_name}},
+
+Your ad “{{item_title}}” , ID: {{item_id}} on {{service}} is still just a draft since {{create_date}}.
+It is not yet visible. To change that and complete your ad-placement, click here: {{paa_link_with_id_token}}.
+
+Don’t forget to check out our tips on how to improve your ads performance : <a href=”{{site_url}}/faq#improve-your-ads-performance”> FAQ-page under “Improving your ads ‘performance” </a>.
+If you have any questions, please feel free to contact us: <a href="mailto:{{support_email}}"> {{support_email}}</a>.
+
+Kind regards
+Your  {{service}}-team

@@ -1,0 +1,5 @@
+Hey {{receiver_first_name}},
+
+Your ad {{ad_title}} is expiring on {{ad_expiry}}.
+
+The Fiare Team

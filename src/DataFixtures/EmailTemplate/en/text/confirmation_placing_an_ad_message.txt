@@ -1,0 +1,14 @@
+Dear {{ user_name }},
+thank you for placing an ad on <a href={{ site_url }}> {{ service }} </a>.
+If you want to edit your ad, click here:<a href="{{ edit_add_link_with_ID_token }}"> {{ edit_add_link_with_ID_token }}</a>.
+You can also place another ad! Just login and click "Place ad". To do so, login to {{ service }}, <a href="{{ site_url }}/item/new"> click here</a>.
+Don’t forget to check out also our :<a href="{{ upsell_link_with_ID_token }}" > increased visibility options to decrease your sales time</a>!
+If you haven’t placed an ad  at <a href="{{ site_url }}">{{ service }}</a>, please feel free to contact us via our support feedback form  <a href="{{ support_form_link }}"> {{ support_form_link }}</a>.
+To get more tips on how to improve you ads performance , check out our <a href="{{ site_url }}/faq#improve-your-ads-performance"> FAQ-page under “Improving your ads 'performance" </a>.
+
+Kind regards<br />
+Your  {{ service }}-team
+
+{% if support_phone_number is defined %}
+You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{ support_phone_number }}
+{% endif %}

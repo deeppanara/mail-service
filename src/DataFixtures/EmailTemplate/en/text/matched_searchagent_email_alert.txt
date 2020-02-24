@@ -1,0 +1,35 @@
+Dear {{user_full_name}},
+            you’ve placed a search agent with the title "{{search_agent_name}}" on {{service}}.
+            These are the  latest items that match your search agents criteria:
+                        {% if item.image is defined %}
+                        <img src="{{ item.image }}"><hr/>
+                        {% else %}
+                        <img src="{{site_url}}/bundles/faffrontend/images/noimage-300x240.png" /><hr/>
+                        {% endif %}
+                        {% if item.title is defined %}
+                        <h4>{{ item.title }}</h4>
+                        {% endif %}
+                        <p>{{ item.category }}</p>
+                        {% if item.is_not_price is defined and item.is_not_price == 1 %}
+                        <p>{{ item.is_not_price }}</p>
+                        {% elseif item.price is defined %}
+                        <p>{{ item.price }}</p>
+                        {% endif %}
+                        {% if item.location is defined %}
+                        <p>{{ item.location }}</p>
+                        {% endif %}
+
+
+To see all the newest ads  matching your search agent <a href="{{ item_list_link }}"> click here </a>
+
+To edit your search agent properties here <a href="{{edit_search_agent_link}}"> {{edit_search_agent_name}} </a>.
+
+You can also place another search agent! Just login and click 'Create A Search Alert'. To do so, login to {{service}}, <a href="{{ item_list_link }}"> click here </a>.
+
+If you haven’t placed a search agent at <a href="{{site_url}}"> {{service}} </a>, please feel free to contact us via our support feedback form  <a href="mailto:{{support_email}}?subject=I didn’t place a search agent" target="_top"> {{support_email}}</a>.
+Kind regards,<br />
+{{ service }}-Team
+
+{% if support_phone_number is defined and support_phone_number %}
+You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{support_phone_number}}
+{% endif %}

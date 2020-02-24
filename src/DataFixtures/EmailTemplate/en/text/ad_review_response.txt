@@ -1,0 +1,13 @@
+Hi {{user_first_name}}<br /><br />
+
+{{responder_first_name}} has left a review response.
+Here's their message:
+{{review_response_comment}}
+
+{{ad_title}}
+Category: {{ad_category}}
+
+If there is anything else you need, please get in touch.
+
+Cheers,
+Fiare Team

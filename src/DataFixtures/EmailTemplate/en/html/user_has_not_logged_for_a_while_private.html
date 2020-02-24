@@ -1,0 +1,72 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_first_name}},</h2>
+        <p>we’ve noticed, that we haven’t seen you in in a while.</p>
+
+        {% if items is defined %}
+        <p>Here some examples of our latest items in your region:</p>
+        <table class="data-columns" >
+            <tbody>
+            <tr>
+            {% for key,item in items %}
+
+                <td>
+                    {% if item.image is defined %}
+                    <img src="{{ item.image }}"><hr/>
+                    {% else %}
+                    <img src="{{ frontend_asset_url('/bundles/faffrontend/images/noimage-300x240.png') }}" /><hr/>
+                    {% endif %}<br/>
+                    {% if item.title is defined %}
+                    <h4>{{ item.title }}</h4>
+                    {% endif %}<br/>
+                    <h5>{{ item.category }}</h5>
+                        {% if item.is_not_price is defined and item.is_not_price == 1 %}
+                            <h6>{{ item.is_not_price }}</h6>
+                        {% elseif item.price is defined %}
+                            <h6>{{ item.price }}</h6>
+                        {% endif %}
+                    {% if item.location is defined %}
+                        <h6>{{ item.location }}</h6>
+                    {% endif %}
+                </td>
+            {% endfor %}
+            </tr>
+            </tbody></table>
+        {% endif %}
+
+        <p>To see all the newest ads  <a href="{{site_url}}"> click here </a></p>
+        <p>Not interested in those? You can personalise this message by editing “Interest fields” . To do so, <a href="{{edit_profile}}">login and edit your profile</a>. There you can also disable or unsubscribe from this messages.</p>
+        <p>We would love to have you as a seller. So  <a href="{{site_url}}/login"> login and click “Place an ad”</a>. </p>
+        <p>If you have forgotten your password you can reset it, by <a href="{{reset_password}}">requesting a new password</a>.</p>
+        <p>
+            Kind regards,<br />
+            {{service}}-Team
+        </p>
+    </td>
+</tr>

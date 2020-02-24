@@ -1,0 +1,7 @@
+Hello,
+Below is the feedback from site, please review and reply,
+
+{{comment|raw}}
+
+Cheers,
+Fiare Team

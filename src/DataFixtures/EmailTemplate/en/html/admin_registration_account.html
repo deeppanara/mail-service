@@ -1,0 +1,57 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_full_name}},</h2>
+        <p>
+            You receive this email because you were invited to join a  <a href="{{site_url}}"> {{service}} </a>-business account.
+            You can now:
+            <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+
+            {% if private_user_edit_account is defined and private_user_edit_account %}
+                <a href="{{private_user_edit_account}}">Fill out your personal profile</a>
+            {% endif %}
+
+            {% if corporate_user_edit_account is defined and corporate_user_edit_account %}
+                <a href="{{corporate_user_edit_account}}">complete your company profile</a>.
+                Tips: Before placing ads, we strongly recommend, to <a href="{{corporate_user_edit_account}}">complete your personal and company profile</a>. In our experience, the more detailed your profile is, the more potential buyers contact you.
+            {% endif %}
+
+            To place ads more effectively, we would recommend a subscription package. You can read more about the properties and benefits on <a href="{{subsription_link}}">our subscription options page</a>.
+            For other value added services such as dealer info page, import ads or  wants ads notifications, please visit our <a href="{{site_url}}/vas">business services info site</a>.
+            If you have any questions, please feel free to contact us: <a href="mailto:{{support_email}}" target="_top"> {{support_email}}</a>.
+        </p>
+        <p>
+            Kind regards,<br />
+            {{ service }}-Team
+
+            {% if support_phone_number is defined and support_phone_number %}
+            You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{support_phone_number}}
+            {% endif %}
+        </p>
+    </td>
+</tr>

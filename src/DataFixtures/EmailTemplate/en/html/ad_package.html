@@ -1,0 +1,18 @@
+Hi {{user_first_name}}<br /><br />
+
+You have successfully purchased following packages for below ad.<br /><br />
+
+Ad details:<br />
+Ad title: {{ad_title}}<br />
+Category: {{ad_category}}
+
+{% if package_details is defined and package_details|length %}
+    <br /><br />Package details:<br />
+    {% for package_detail in package_details %}
+        Package name: {{ package_detail.package_name}}<br />
+        Start date: {{ package_detail.start_date}}<br />
+        Duration : {{ package_detail.duration}} days<br /><br />
+    {% endfor %}
+{% endif %}
+Cheers,
+Fiare Team

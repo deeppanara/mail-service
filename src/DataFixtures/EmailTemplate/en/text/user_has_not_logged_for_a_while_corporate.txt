@@ -1,0 +1,17 @@
+Dear {{user_first_name}},
+
+we have noticed, that we have not seen you in in a while.
+
+{% if region_item_list is defined %}
+    Discover what is going on in {{region}} on your market : {{region_item_list}}
+{% endif %}
+
+It would not be the same without you! So login using link below and place an ad to gain more visibility.
+{{ item_new_without_login }}
+
+If you have forgotten your password you can reset it from here : {{reset_password}}
+
+If you have any questions, please feel free to contact us on {{email_address}}.
+
+Kind regards,
+{{service}}-Team

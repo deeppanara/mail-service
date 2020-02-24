@@ -1,0 +1,12 @@
+Dear {{ user_name }},
+we’ve noticed that your {{ subscription_name }} -subscription is expiring on {{ expiration_date }}
+Please note that once your subscription ended, all related ads will go offline.
+If you want to renew your {{ subscription_name }}-package or upgrade, click here:<a href="{{ renew_subscription_link_with_ID_token }}"> {{renew_subscription_link_with_ID_token}}</a>.
+To get good tips on how to improve you ads performance , <a href="{{ site_url }}/faq#improve-your-ads-performance"> visit the "Improving your ads 'performance" on  our FAQ-page</a>.
+And if you have any questions, please feel free to contact us: <a href="mailto:{{ support_email }}"> {{ support_email }}</a>.
+Kind regards
+  Your  {{ service }}-team
+
+{% if support_phone_number is defined %}
+You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{ support_phone_number }}
+{% endif %}

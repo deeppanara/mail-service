@@ -1,0 +1,44 @@
+{% set container = fetch_container_instance() %}
+<tr>
+  <td class="hero-bg" valign="bottom">
+    <table class="welcome-content" align="center">
+      <tr>
+        <td align="center">
+          <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table class="welcome-buttons" align="center">
+            <tr>
+              <td>
+                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+              </td>
+              <td class="welcome-btn-space">&nbsp;</td>
+              <td>
+                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+  <td class="main-content" valign="top">
+
+    <h2 class="section-title">Dear {{ user_name }},</h2>
+    <p>we’ve noticed, that you haven’t placed any ad yet.</p>
+    <p>We’d love to have you actively on board and make a good sale. To get started: Just <a href="{{ item_new_without_login }}"> login and click “Place an ad”</a>. </p>
+    <p>Don’t forget to check out our tips on how to improve your ads performance : <a href="{{site_url}}/faq#improve-your-ads-performance"> FAQ-page under “Improving your ads ‘performance” </a>.</p>
+    <p>If you have forgotten your password you can reset it, by <a href="{{site_url}}/request_password">requesting a new password</a>.</p>
+    <p>If you have any questions, please feel free to contact us: <a href="mailto:{{email_address}}">{{email_address}}</a>.</p>
+    <p>Kind regards<br />
+      Your  {{portal_name}}-team</p>
+
+    {% if support_phone_number is defined %}
+    <p>You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{ support_phone_number }}</p>
+    {% endif %}
+  </td>
+</tr>

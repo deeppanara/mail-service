@@ -1,0 +1,4 @@
+Hi <br /><br />
+
+Welcome to Nettivuokraus. Please add a password to your new user account here:
+{{url_password_reset}}

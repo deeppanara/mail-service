@@ -1,0 +1,46 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_first_name}},</h2>
+        <p> a while back you have registered at <a href="{{site_url}}"> {{ service }}</a>. But it seems you haven’t yet verified your account.</p>
+
+        <p>To complete your registration and place ads,  click the following link: <a href='{{confirmation_link}}'>{{confirmation_link}}</a>.</p>
+
+        <p>If the token is not working, you can request a new token, by clicking here: <a href='{{request_new_token_link}}'>{{request_new_token_link}}</a>.</p>
+
+        <p>If you haven’t registered at {{portal_name}},  please notify us under This is an email link:
+            <a href="mailto:{{email_address}}?Subject=I have not registered at your portal" target="_top"> {{email_address}}</a>
+            so we can remove this account.
+        </p>
+        <p></p>
+        <p>
+            Kind regards,<br />
+            {{ service }}-Team
+        </p>
+    </td>
+</tr>

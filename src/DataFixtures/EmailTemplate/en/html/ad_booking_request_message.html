@@ -1,0 +1,29 @@
+Hi {% if receiver_first_name %}{{receiver_first_name}} {{receiver_last_name}}{% else %}{{ receiver_company_name }}{% endif %}<br /><br />
+
+Start Date : {{ start_date|date("d/m/Y") }}
+
+Start time: {% if start_time %}{{ start_time|date("H:i")  }} {% else %}{{ free_text_start_time }}{% endif %}
+End Date : {{ end_date|date("d/m/Y") }}
+End time: {% if end_time %}{{ start_time|date("H:i") }} {% else %}{{ free_text_start_time }}{% endif %}
+
+{% if sender_first_name %}
+First Name: {{ sender_first_name }}
+{% endif %}
+{% if sender_last_name %}
+Last Name: {{ sender_last_name }}
+{% endif %}
+
+{% if sender_company_name %}
+Company Name: {{ sender_company_name }}
+{% endif %}
+
+{% if sender_email %}
+Email: {{ sender_email }}
+{% endif %}
+
+{% if text_message %}
+Message: {{ text_message }}
+{% endif %}
+
+Cheers,
+Fiare Team

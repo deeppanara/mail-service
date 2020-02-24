@@ -1,0 +1,24 @@
+
+Dear {{user_first_name}},
+
+Congratulations on verifying your {{ service }}-account.
+
+You can now:
+
+{{ place_ads }}
+{{ place_search_agents }}
+{{ complete_your_profile }}
+
+Or search for interesting objects and related new in your region.
+
+Tipp: Before placing ads, we strongly recommend, to
+{{complete_your_profile}}
+
+In our experience, the more detailed your profile is, the more potential buyers contact you.
+
+
+If you have any questions, please feel free to contact us: {{support_email}}
+
+
+Kind regards,<br />
+{{service}}-Team

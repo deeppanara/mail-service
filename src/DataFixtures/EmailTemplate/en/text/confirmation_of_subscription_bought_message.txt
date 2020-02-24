@@ -1,0 +1,13 @@
+Dear {{user_name}},
+thank you for becoming {{subscription_name}}-user.
+Now that you’re all good to go <a href="{{site_url}}/ppa">place your stock  on {{service}}</a>.
+Don't forget to check out also our :<a href="{{site_url}}/upsells" > increased visibility options to decrease your sales time</a>!
+To get good tips on how to improve you ads performance , <a href="{{site_url}}/faq#improve-your-ads-performance"> visit the “Improving your ads 'performance" on  our FAQ-page</a>.
+And if you have any questions, please feel free to contact us: <a href="mailto:{{support_email}}"> {{support_email}}</a>.
+
+Kind regards
+Your  {{ service }}-team
+
+{% if support_phone_number is defined %}
+You can also reach our service team from Mon -Fri  from 9 -17 GMT+1 under: {{ support_phone_number }}
+{% endif %}

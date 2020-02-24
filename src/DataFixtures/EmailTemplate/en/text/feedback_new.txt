@@ -1,0 +1,22 @@
+Dear webmaster,
+Below is the feedback from site, please review and reply,
+Feedback Type: {{ type }}
+{% if issue is defined %}
+Feedback Issue: {{ issue }}
+{% endif %}
+{% if name is defined and name|length > 0 %}
+Name: {{ name }}
+{% endif %}
+{% if email is defined and email|length > 0 %}
+Email: {{ email }}
+{% endif %}
+{% if ad_id is defined and ad_id|length > 0 %}
+Ad Ids: {{ ad_id }}
+{% endif %}
+{% if comment is defined and comment|length > 0 %}
+Comments:
+{{comment|raw}}
+{% endif %}
+
+Cheers,
+{{ service }} Team

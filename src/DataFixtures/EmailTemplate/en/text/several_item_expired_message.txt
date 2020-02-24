@@ -1,0 +1,16 @@
+Dear {{user_first_name}},
+
+Your ad “{{item_title}}” , ID: {{item_id}} on {{service}} is expiring on {{item_expiry}}.
+
+If you want to renew those ads, click here:{{user_item_list}}
+
+You can also place another ad! Just login and click “Place ad”.
+To do so, login to {{service}}, and click here : {{ item_new_without_login }}.
+
+Maybe you could also consider to improve the visibility of your ad! Check out these options! {{site_url}}/upsells
+
+To get more tips on how to improve you ads performance , check out our FAQ-page under “Improving your ads ‘performance”.
+{{site_url}}/faq#improve-your-ads-performance
+
+Kind regards,
+{{ service }}-Team

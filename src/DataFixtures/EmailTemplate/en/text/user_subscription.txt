@@ -1,0 +1,6 @@
+Hi {{user_first_name}}
+
+You have successfully purchased {{text_package_name}}.
+
+Cheers,
+Fiare Team

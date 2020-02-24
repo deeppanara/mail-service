@@ -1,0 +1,6 @@
+Hey {{receiver_first_name}},
+
+a while back you have registered at {{site_url}}">. But it seems you haven’t yet verified your account.
+
+Kind regards,
+{{ service }}-Team

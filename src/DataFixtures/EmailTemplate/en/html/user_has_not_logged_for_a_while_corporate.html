@@ -1,0 +1,46 @@
+<tr>
+    <td class="hero-bg" valign="bottom">
+        <table class="welcome-content" align="center">
+            <tr>
+                <td align="center">
+                    <p>We welcome you to FiareAds community! Begin experiencing our service and...</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="welcome-buttons" align="center">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Post an ad!</a>
+                            </td>
+                            <td class="welcome-btn-space">&nbsp;</td>
+                            <td>
+                                <a href="javascript:void(0);" class="orange-button">Browse ads</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<tr>
+    <td class="main-content" valign="top">
+        <h2 class="section-title">Dear {{user_first_name}},</h2>
+        <p>we’ve noticed, that we haven’t seen you in in a while.</p>
+
+        {% if region_item_list is defined %}
+            <p><a href="{{region_item_list}}"> Discover what is going on in {{region}} on your market</a>.</p>
+        {% endif %}
+
+        <p>It wouldn't be the same without you! So  <a href="{{item_new_without_login}}"> login and place an ad</a> to gain more visibility .</p>
+
+        <p>If you have forgotten your password you can reset it, by <a href="{{reset_password}}">requesting a new password</a>.</p>
+
+        <p>If you have any questions, please feel free to contact us: <a href="mailto:{{email_address}}">{{email_address}}</a>.</p>
+        <p>
+            Kind regards,<br />
+            {{service}}-Team
+        </p>
+    </td>
+</tr>

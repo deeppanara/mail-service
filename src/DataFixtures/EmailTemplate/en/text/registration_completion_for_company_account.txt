@@ -1,0 +1,25 @@
+Dear {{user_first_name}},
+Congratulations on verifying your {{ service }}-business account.
+
+You can now:
+
+{{ place_ads }}
+
+{{ complete_your_profile }}
+
+
+Tipp: Before placing ads, we strongly recommend, to
+{{complete_your_profile}}
+
+In our experience, the more detailed your profile is, the more potential buyers contact you.
+
+
+To place ads more effectively, we would recommend a subscription package.
+You can read more about the properties and benefits on
+
+{{ subscriptions_page }}
+
+If you have any questions, please feel free to contact us: {{support_email}}
+
+Kind regards,
+{{service}}-Team

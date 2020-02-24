@@ -1,0 +1,31 @@
+Dear {{user_first_name}},
+
+we’ve noticed, that we haven’t seen you in in a while.
+
+{% if items is defined %}
+Here some examples of our latest items in your region:
+{% for key,item in items %}
+-----------------------------------
+{% if item.title is defined %}{{ item.title }}{% endif %}
+{{ item.category }}
+{% if item.is_not_price is defined and item.is_not_price == 1 %}
+{{ item.is_not_price }}
+{% elseif item.price is defined %}
+{{ item.price }}
+{% endif %}
+{% if item.location is defined %}
+{{ item.location }}
+{% endif %}
+{% endfor %}
+{% endif %}
+-----------------------------------
+
+To see all the newest ads  click here : {{site_url}}
+Not interested in those? You can personalise this message by editing “Interest fields” . To do so, login and edit your profile using below link. There you can also disable or unsubscribe from this messages.
+{{edit_profile}}
+
+We would love to have you as a seller. So  login ({{site_url}}/login) and click "Place an ad"
+If you have forgotten your password you can reset it by click here : {{reset_password}}
+
+Kind regards,
+{{service}}-Team
