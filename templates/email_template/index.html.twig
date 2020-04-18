@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block header_title %}
+    <span class="font-weight-semibold">EmailTemplate </span> - index
+{% endblock header_title %}
+
+{% block header_elements %}
+    <a href="{{ path('email_template_new') }}" class="btn btn-primary" type="button"><i class="icon-plus3 mr-2"></i> Create new</a>
+{% endblock header_elements %}
+
+{% block body %}
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Search results</h5>
+        <div class="tables_length">
+            <label>
+                <span>Show:</span>
+                <select class="select2-hidden-accessible"  aria-hidden="true">
+                    <option value="25" {{ app.request.get('itemsPerPage') == 25 ? 'selected' : '' }} >25</option>
+                    <option value="50" {{ app.request.get('itemsPerPage') == 50 ? 'selected' : '' }}>50</option>
+                    <option value="75" {{ app.request.get('itemsPerPage') == 75 ? 'selected' : '' }}>75</option>
+                    <option value="100" {{ app.request.get('itemsPerPage') == 100 ? 'selected' : '' }}>100</option>
+                </select>
+            </label>
+
+            <div class="dt-buttons">
+                <div class="input-group-append">
+                    <button type="button" class="btn bg-slate dropdown-toggle btn-icon" data-toggle="dropdown">
+                        <i class="icon-menu7"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr class="bg-slate">
+                <th class="text-center">Id</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Subject</th>
+                <th class="text-center">Sender Email</th>
+                <th class="text-center">Sender Name</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Created At</th>
+                <th class="text-center">Updated At</th>
+                <th class="text-center">Has Layout</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email_template in email_templates %}
+                <tr class="bg-light">
+                    <td>{{ email_template.id }}</td>
+                    <td>{{ email_template.name }}</td>
+                    <td>{{ email_template.subject }}</td>
+                    <td>{{ email_template.senderEmail }}</td>
+                    <td>{{ email_template.senderName }}</td>
+                    <td>{{ email_template.status }}</td>
+                    <td>{{ email_template.createdAt }}</td>
+                    <td>{{ email_template.updatedAt }}</td>
+                    <td>{{ email_template.hasLayout ? 'Yes' : 'No' }}</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="javascript:void(0)" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="{{ path('email_template_show', {'id': email_template.id}) }}" class="dropdown-item"><i class="icon-view"></i> Show</a>
+                                    <a href="{{ path('email_template_edit', {'id': email_template.id}) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="14">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% for message in app.flashes('success') %}
+    <script>
+      $(document).ready(function() {
+        new PNotify({
+          delay: 4000,
+          title: 'Success',
+          text: '{{ message }}',
+          icon: 'icon-checkmark3',
+          type: 'success'
+        });
+      });
+    </script>
+{% endfor %}

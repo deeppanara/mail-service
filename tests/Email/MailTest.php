@@ -19,6 +19,6 @@ class MailTest extends KernelTestCase
 
     public function testBase()
     {
-        $this->mailService
+        $this->mailService;
     }
 }

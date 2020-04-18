@@ -1,0 +1,102 @@
+{% block data_table %}
+    {% block data_table_heading %}
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Search results</h5>
+            <div class="tables_length">
+                <label>
+                    <span>Show:</span>
+                    <select class="select2-hidden-accessible"  aria-hidden="true">
+                        <option value="25" {{ app.request.get('itemsPerPage') == 25 ? 'selected' : '' }} >25</option>
+                        <option value="50" {{ app.request.get('itemsPerPage') == 50 ? 'selected' : '' }}>50</option>
+                        <option value="75" {{ app.request.get('itemsPerPage') == 75 ? 'selected' : '' }}>75</option>
+                        <option value="100" {{ app.request.get('itemsPerPage') == 100 ? 'selected' : '' }}>100</option>
+                    </select>
+                </label>
+
+                <div class="dt-buttons">
+                    <div class="input-group-append">
+                        <button type="button" class="btn bg-slate dropdown-toggle btn-icon" data-toggle="dropdown">
+                            <i class="icon-menu7"></i>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{{ path('admin_user_export', app.request.query.all ) }}" target="_blank" class="dropdown-item"><span><i class="icon-file-spreadsheet mr-2"></i> CSV</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock data_table_heading %}
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            {% block data_head %}
+                {% for key in table.getHeaders() %}
+                    <th>{{ key }}
+                        {% if table.getOrders()[loop.index0] is defined and table.getOrders()[loop.index0] != '' %}
+                            {{ getOrderLink('_', table.getOrders()[loop.index0], 'asc' )|raw }}
+                            {{ getOrderLink('_', table.getOrders()[loop.index0], 'desc' )|raw }}
+
+                            {#<a href="{{ path(app.request.get('_route'), app.request.query.all['_']|merge({'sortField': key }) ) }}"><i class="float-right icon-arrow-down16"></i></a>#}
+                            {#<a href="{{ path(app.request.get('_route'), {'_':  app.request.query.all['_']|merge({'sortField': 'email' }) }) }}"><i class="float-right icon-arrow-up16"></i></a>#}
+                       {% endif %}
+                    </th>
+                {% endfor %}
+            {% endblock data_head %}
+            {% set block_name = 'data_actions' %}
+            {% if block(block_name) is defined %}
+                <th class="text-center">Actions</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for ker, result in pager.currentPageResults %}
+
+            {#{{ dump(result) }}#}
+            <tr>
+                {% block data_rows %}
+
+                    {% for key in table.getRows() %}
+                        {% set block_name = 'table_data_'~key %}
+                        {% if block(block_name) is defined %}
+                            {{ block(block_name) }}
+                        {% else %}
+                            <td>{{ attribute(result, key) }}</td>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endblock data_rows %}
+
+                {% set block_name = 'data_actions' %}
+                {% if block(block_name) is defined %}
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="javascript:void(0)" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    {{ block(block_name) }}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                {% endif %}
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="datatable-footer">
+        <div class="dataTables_info" role="status" aria-live="polite">Showing {{ pager.getCurrentPageOffsetStart }} to {{ pager.getCurrentPageOffsetEnd }} out of {{ pager.nbResults }}</div>
+        <div class="dataTables_paginate paging_simple_numbers" >
+            {{ pagerfanta(pager, 'twitter_bootstrap4') }}
+        </div>
+    </div>
+{% endblock data_table %}
+
+{% block table_data_roles %}
+    fsdfsd
+{% endblock table_data_roles%}
