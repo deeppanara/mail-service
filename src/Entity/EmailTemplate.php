@@ -11,6 +11,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +31,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class EmailTemplate
 {
+    use TimestampableTrait;
+
     /**
      * @var int
      *
@@ -45,6 +48,11 @@ class EmailTemplate
      * @ORM\Column(name="identifier", type="string", length=255, unique=true)
      */
     private $identifier;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EmailGroup")
+     */
+    private $email_group;
 
     /**
      * @var string
@@ -101,19 +109,6 @@ class EmailTemplate
      * @ORM\Column(name="status", type="smallint", nullable=true, options={"default" = 1})
      */
     private $status;
-
-    /** @var int
-     *
-     * @ORM\Column(name="created_at", type="integer", length=10)
-     */
-    private $created_at;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="updated_at", type="integer", length=10, nullable=true)
-     */
-    private $updated_at;
 
     /**
      * Construct.
@@ -364,74 +359,6 @@ class EmailTemplate
     }
 
     /**
-     * Set created at.
-     *
-     * @param int $createdAt
-     *
-     * @return EmailTemplate
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get created at.
-     *
-     * @return int
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * Set updated at.
-     *
-     * @param int $updatedAt
-     *
-     * @return EmailTemplate
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updated_at = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updated at.
-     *
-     * @return int
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * Set created at value.
-     *
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAtValue()
-    {
-        $this->created_at = time();
-    }
-
-    /**
-     * Set updated at value.
-     *
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAtValue()
-    {
-        $this->updated_at = time();
-    }
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="has_layout", type="boolean", nullable=true)
@@ -461,4 +388,22 @@ class EmailTemplate
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailGroup() : ?EmailGroup
+    {
+        return $this->email_group;
+    }
+
+    /**
+     * @param mixed $email_group
+     */
+    public function setEmailGroup(?EmailGroup $email_group)
+    {
+        $this->email_group = $email_group;
+    }
+
+
 }

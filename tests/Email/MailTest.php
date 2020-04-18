@@ -19,6 +19,12 @@ class MailTest extends KernelTestCase
 
     public function testBase()
     {
-        $this->mailService;
+        $mailManager = $this->mailService;
+
+        $mailManager->init();
+        $mailManager->setTo('test@example.com');
+        ;
+        dump($mailManager->send());
+//        self::assertTrue(true);
     }
 }

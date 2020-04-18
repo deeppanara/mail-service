@@ -92,20 +92,60 @@ EOD;
         $emailtemplate->setSenderName("test");
         $emailtemplate->setStatus(1);
 
-        // Set translation
-        $global['name'] = 'Email Template Layout';
-        $global['subject'] = 'Email Template Layout';
-        $global['sender_email'] = 'test@test.com';
-        $global['sender_name'] = 'test';
-        $global['variables'] = $variableArray;
-        $global['status'] = 1;
-        $global['id'] = $id;
+        $em->persist($emailtemplate);
+        $em->flush();
+        $em->clear();
+
+
+        $bodyHtml = <<<EOD
+<div>
+    registration mail
+</div>
+EOD;
+
+        // set email template
+        $variableArray = ['{{ site_url }}', '{{ service }}', '{{ email_body|raw }}'];
+        $slugger = new AsciiSlugger();
+        $slug = $slugger->slug('Email Registration');
+
+        $emailtemplate = new EmailTemplate();
+        $emailtemplate->setIdentifier($slug);
+        $emailtemplate->setName('registration email');
+        $emailtemplate->setSubject('registration');
+        $emailtemplate->setBodyHtml($bodyHtml);
+        $emailtemplate->setVariable(serialize($variableArray));
+        $emailtemplate->setSenderEmail("test@test.com");
+        $emailtemplate->setSenderName("test");
+        $emailtemplate->setStatus(1);
 
         $em->persist($emailtemplate);
         $em->flush();
         $em->clear();
-        ++$id;
 
+        $bodyHtml = <<<EOD
+<div>
+    reset your password here
+</div>
+EOD;
+
+        // set email template
+        $variableArray = ['{{ site_url }}', '{{ service }}', '{{ email_body|raw }}'];
+        $slugger = new AsciiSlugger();
+        $slug = $slugger->slug('Email reset password');
+
+        $emailtemplate = new EmailTemplate();
+        $emailtemplate->setIdentifier($slug);
+        $emailtemplate->setName('Email reset password');
+        $emailtemplate->setSubject('reset your password here');
+        $emailtemplate->setBodyHtml($bodyHtml);
+        $emailtemplate->setVariable(serialize($variableArray));
+        $emailtemplate->setSenderEmail("test@test.com");
+        $emailtemplate->setSenderName("test");
+        $emailtemplate->setStatus(1);
+
+        $em->persist($emailtemplate);
+        $em->flush();
+        $em->clear();
 //        // check whether file is present
 //        $path = UF::get('Fads', $this->container)::getFixtureFile('src\\DataFixtures\\EmailTemplate\\', 'emailTemplate.csv', __DIR__, 'EmailTemplate');
 //

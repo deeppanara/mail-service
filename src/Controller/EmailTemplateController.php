@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\EmailTemplate;
 use App\Form\EmailTemplateType;
+use App\Manager\MailManager;
 use App\Repository\EmailTemplateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +19,13 @@ class EmailTemplateController extends AbstractController
     /**
      * @Route("/", name="email_template_index", methods={"GET"})
      */
-    public function index(EmailTemplateRepository $emailTemplateRepository): Response
+    public function index(EmailTemplateRepository $emailTemplateRepository, MailManager $mailManager): Response
     {
+
+        $mailManager->init();
+        $mailManager->setTo('recipient222@example.com');
+        $mailManager->send();
+
         return $this->render('email_template/index.html.twig', [
             'email_templates' => $emailTemplateRepository->findAll(),
         ]);
