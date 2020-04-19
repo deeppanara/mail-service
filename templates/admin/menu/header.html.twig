@@ -1,79 +1,200 @@
-<!-- Main navbar -->
-<div class="navbar navbar-expand-md navbar-light navbar-static fixed-top">
-    <!-- Header with logos -->
-    <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
-        <div class="navbar-brand navbar-brand-md">
-            <a href="index.html" class="d-inline-block">
-                <img src="../../../../global_assets/images/logo_light.png" alt="">
-            </a>
-        </div>
+{#<!-- Main navbar -->#}
+{#<div class="navbar navbar-expand-md navbar-light navbar-static fixed-top">#}
+{#    <!-- Header with logos -->#}
+{#    <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">#}
+{#        <div class="navbar-brand navbar-brand-md">#}
+{#            <a href="index.html" class="d-inline-block">#}
+{#                <img src="../../../../global_assets/images/logo_light.png" alt="">#}
+{#            </a>#}
+{#        </div>#}
 
-        <div class="navbar-brand navbar-brand-xs">
-            <a href="index.html" class="d-inline-block">
-                <img src="../../../../global_assets/images/logo_icon_light.png" alt="">
-            </a>
-        </div>
+{#        <div class="navbar-brand navbar-brand-xs">#}
+{#            <a href="index.html" class="d-inline-block">#}
+{#                <img src="../../../../global_assets/images/logo_icon_light.png" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- /header with logos -->#}
+{#    <!-- Mobile controls -->#}
+{#    <div class="d-flex flex-1 d-md-none">#}
+{#        <div class="navbar-brand mr-auto">#}
+{#            <a href="index.html" class="d-inline-block">#}
+{#                <img src="{{ asset('global_assets/images/logo_dark.png') }}" alt="">#}
+{#            </a>#}
+{#        </div>#}
+{#        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">#}
+{#            <i class="icon-tree5"></i>#}
+{#        </button>#}
+
+{#        <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">#}
+{#            <i class="icon-paragraph-justify3"></i>#}
+{#        </button>#}
+{#    </div>#}
+{#    <!-- /mobile controls -->#}
+{#    <!-- Navbar content -->#}
+{#    <div class="collapse navbar-collapse" id="navbar-mobile">#}
+{#        <ul class="navbar-nav">#}
+{#            <li class="nav-item">#}
+{#                <a href="javascript:void(0)" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">#}
+{#                    <i class="icon-paragraph-justify3"></i>#}
+{#                </a>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <span class="navbar-text ml-md-3 mr-md-auto">#}
+{#            </span>#}
+{#        <ul class="navbar-nav">#}
+{#            <li class="nav-item dropdown">#}
+{#                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">#}
+{#                    <img src="../../../../global_assets/images/lang/gb.png" class="img-flag mr-2" alt="">#}
+{#                    English#}
+{#                </a>#}
+
+{#                <div class="dropdown-menu dropdown-menu-right">#}
+{#                    <a href="javascript:void(0)" class="dropdown-item english active"><img src="{{ asset('global_assets/images/lang/gb.png') }}" class="img-flag" alt=""> English</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item ukrainian"><img src="{{ asset('global_assets/images/lang/ua.png') }}" class="img-flag" alt=""> Українська</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item deutsch"><img src="{{ asset('global_assets/images/lang/de.png') }}" class="img-flag" alt=""> Deutsch</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item espana"><img src="{{ asset('global_assets/images/lang/es.png') }}" class="img-flag" alt=""> España</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item russian"><img src="{{ asset('global_assets/images/lang/ru.png') }}" class="img-flag" alt=""> Русский</a>#}
+{#                </div>#}
+{#            </li>#}
+{#            <li class="nav-item dropdown dropdown-user">#}
+{#                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">#}
+{#                    <img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">#}
+{#                    <span>Victoria</span>#}
+{#                </a>#}
+
+{#                <div class="dropdown-menu dropdown-menu-right">#}
+{#                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-coins"></i> My balance</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>#}
+{#                    <div class="dropdown-divider"></div>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>#}
+{#                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>#}
+{#                </div>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{#    <!-- /navbar content -->#}
+{#</div>#}
+{#<!-- /main navbar -->#}
+
+<!-- Main navbar -->
+<div class="navbar navbar-expand-md navbar-dark bg-indigo fixed-top">
+    <div class="navbar-brand wmin-0 mr-5">
+        <a href="../full/index.html" class="d-inline-block">
+            <img src="../../../../global_assets/images/logo_light.png" alt="">
+        </a>
     </div>
-    <!-- /header with logos -->
-    <!-- Mobile controls -->
-    <div class="d-flex flex-1 d-md-none">
-        <div class="navbar-brand mr-auto">
-            <a href="index.html" class="d-inline-block">
-                <img src="{{ asset('global_assets/images/logo_dark.png') }}" alt="">
-            </a>
-        </div>
+
+    <div class="d-md-none">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
             <i class="icon-tree5"></i>
         </button>
-
-        <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
-            <i class="icon-paragraph-justify3"></i>
-        </button>
     </div>
-    <!-- /mobile controls -->
-    <!-- Navbar content -->
+
     <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="javascript:void(0)" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
-                    <i class="icon-paragraph-justify3"></i>
-                </a>
+                <a href="#" class="navbar-nav-link">Text link</a>
             </li>
-        </ul>
-        <span class="navbar-text ml-md-3 mr-md-auto">
-            </span>
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="../../../../global_assets/images/lang/gb.png" class="img-flag mr-2" alt="">
-                    English
-                </a>
 
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0)" class="dropdown-item english active"><img src="{{ asset('global_assets/images/lang/gb.png') }}" class="img-flag" alt=""> English</a>
-                    <a href="javascript:void(0)" class="dropdown-item ukrainian"><img src="{{ asset('global_assets/images/lang/ua.png') }}" class="img-flag" alt=""> Українська</a>
-                    <a href="javascript:void(0)" class="dropdown-item deutsch"><img src="{{ asset('global_assets/images/lang/de.png') }}" class="img-flag" alt=""> Deutsch</a>
-                    <a href="javascript:void(0)" class="dropdown-item espana"><img src="{{ asset('global_assets/images/lang/es.png') }}" class="img-flag" alt=""> España</a>
-                    <a href="javascript:void(0)" class="dropdown-item russian"><img src="{{ asset('global_assets/images/lang/ru.png') }}" class="img-flag" alt=""> Русский</a>
+            <li class="nav-item dropdown">
+                <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
+
+                <div class="dropdown-menu">
+                    <a href="#" class="dropdown-item">Action</a>
+                    <a href="#" class="dropdown-item">Another action</a>
+                    <a href="#" class="dropdown-item">One more action</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Separate action</a>
                 </div>
             </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="#" class="navbar-nav-link">
+                    Text link
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="navbar-nav-link">
+                    <i class="icon-bell2"></i>
+                    <span class="d-md-none ml-2">Notifications</span>
+                    <span class="badge badge-mark border-white ml-auto ml-md-0"></span>
+                </a>
+            </li>
+
             <li class="nav-item dropdown dropdown-user">
-                <a href="javascript:void(0)" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
+                <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                    <img src="../../../../global_assets/images/image.png" class="rounded-circle" alt="">
                     <span>Victoria</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>
+                    <a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                    <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
+                    <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
                     <div class="dropdown-divider"></div>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-                    <a href="javascript:void(0)" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                    <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+                    <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
                 </div>
             </li>
         </ul>
     </div>
-    <!-- /navbar content -->
 </div>
 <!-- /main navbar -->
+
+
+<!-- Secondary navbar -->
+<div class="navbar navbar-expand-md navbar-light">
+    <div class="text-center d-md-none w-100">
+        <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-navigation">
+            <i class="icon-unfold mr-2"></i>
+            Navigation
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-navigation">
+        <ul class="navbar-nav navbar-nav-highlight">
+            <li class="nav-item">
+                <a href="../full/index.html" class="navbar-nav-link">
+                    <i class="icon-home4 mr-2"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item nav-item-levels mega-menu-full">
+                <a href="#" class="navbar-nav-link">
+                    <i class="icon-make-group mr-2"></i>
+                    Navigation
+                </a>
+
+            </li>
+        </ul>
+
+        <ul class="navbar-nav navbar-nav-highlight ml-md-auto">
+            <li class="nav-item">
+                <a href="#" class="navbar-nav-link">Text link</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-cog3"></i>
+                    <span class="d-md-none ml-2">Dropdown</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="#" class="dropdown-item"><i class="icon-user-lock"></i> Account security</a>
+                    <a href="#" class="dropdown-item"><i class="icon-statistics"></i> Analytics</a>
+                    <a href="#" class="dropdown-item"><i class="icon-accessibility"></i> Accessibility</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item"><i class="icon-gear"></i> All settings</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /secondary navbar -->
+
