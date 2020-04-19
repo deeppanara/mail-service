@@ -24,6 +24,7 @@ class EmailTemplateController extends AbstractController
 
         $mailManager->init();
         $mailManager->setTo('recipient222@example.com');
+        $mailManager->render('Email-Registration', []);
         $mailManager->send();
 
         return $this->render('email_template/index.html.twig', [

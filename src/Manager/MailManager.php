@@ -2,7 +2,10 @@
 
 namespace App\Manager;
 
+use App\Repository\EmailTemplateRepository;
+use http\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use function Couchbase\defaultDecoder;
 
 
 class MailManager
@@ -43,16 +46,22 @@ class MailManager
     protected $historyEntityManager;
 
     /**
+     * @var EmailTemplateRepository
+     */
+    protected $emailTemplateRepository;
+
+    /**
      * Constructor.
      *
      * @param object $mailer
      * @param object $em
      * @param object $container
      */
-    public function __construct(\Swift_Mailer $mailer, ContainerInterface $container)
+    public function __construct(\Swift_Mailer $mailer, ContainerInterface $container, EmailTemplateRepository $emailTemplateRepository)
     {
         $this->mailer = $mailer;
         $this->container = $container;
+        $this->emailTemplateRepository = $emailTemplateRepository;
         $this->em = $this->container->get('doctrine')->getManager();
 
         //$this->historyEntityManager = $this->container->get('doctrine')->getManager('history');
@@ -76,7 +85,13 @@ class MailManager
      */
     public function send()
     {
-        $this->getMailer()->send($this->getMessage());
+        if ($this->getMessage()) {
+            $this->getMailer()->send($this->getMessage());
+            $this->message = null;
+        } else {
+            throw new \RuntimeException("Swift_Message is set properly Or already used.");
+        }
+
     }
 
     /**
@@ -235,72 +250,22 @@ class MailManager
      *
      * @throws Exception
      */
-    public function renderMail($emailIdentifier, $mailVars, $locale, $to)
+    public function render($emailIdentifier, $mailVars = [])
     {
-        try {
-            //set layout parameters
-            $mailVars['service'] = $this->container->getParameter('fa.service_name');
-            $mailVars['admin_site_url'] = $this->container->getParameter('fa.base_url');
-            $mailVars['site_title'] = $this->container->getParameter('fa.service_name');
-            $mailVars['pub_id'] = $this->container->getParameter('fa.add_this.pubid');
-            $mailVars['site_url'] = $this->container->getParameter('fa.front.base_url');
-            $mailVars['url_post_ad'] = $this->container->get('router')->generate('item_new_without_login', [], true);
-            $mailVars['url_browse_ads'] = $this->container->get('router')->generate('item_search_front', [], true);
-            $mailVars['url_modal_login'] = $mailVars['site_url'].'/?ref=login_link';
-            $mailVars['url_user_unsubscribe'] = $this->container->get('router')->generate('user_unsubscribe_api_front', [], true);
-            $mailVars['url_account_dashboard'] = $this->container->get('router')->generate('user_dashboard_api_front', [], true);
-            $mailVars['url_messages'] = $this->container->get('router')->generate('message_list_api_front', ['type' => 'inbox'], true);
-            $mailVars['url_notifications'] = $this->container->get('router')->generate('notification_api_front', [], true);
-            $mailVars['support_phone_number'] = $this->container->getParameter('fa.support.phone_number'); //support phone number.
-            $mailVars['support_email'] = $this->container->getParameter('fa.support.email'); //support phone number.
-            $mailVars['date_timestamp'] = date('d/m/Y').'T'.date('H:i:s'); //For email banner
-            $mailVars['user_email'] = $to; //For email banner
-            $mailVars['template_identifier'] = $emailIdentifier; //For email banner
-            $cmsService = UF::get('Fads', $this->container)::getService('cms', $this->container);
-            $quickLinkGroupService = UF::get('Fads', $this->container)::getService('quick_link_group', $this->container);
-            $quickLinkService = UF::get('Fads', $this->container)::getService('quick_link', $this->container);
+        $emailTemplateLayoutHtml = '';
+        $emailTemplate = $this->getEmailTemplate($emailIdentifier);
 
-            $mailVars['static_pages'] = $cmsService->getStaticPageFooterLinks();
-
-            $quickLinkGroupId = $quickLinkGroupService->getPageId($quickLinkService->getConstant('HOME_PAGE'), $quickLinkService->getConstant('QUICK_LINK'), $locale);
-            if ($quickLinkGroupId && isset($quickLinkGroupId[0])) {
-                $mailVars['quick_links'] = $quickLinkService->get($quickLinkGroupId[0]['id'], $locale, 1);
-            }
-
-            $emailTemplateLayoutHtml = '';
-            $emailTemplateLayoutText = '';
-
-            //get layout
-            $emailTemplateLayout = $this->getEmailTemplate('IDE436BAA1', $locale);
-
-            if ($emailTemplateLayout) {
-                $emailTemplateLayoutHtml = $emailTemplateLayout->getBodyHtml();
-                $emailTemplateLayoutText = $emailTemplateLayout->getBodyText();
-            }
-
-            $uploadToAws = $this->container->getParameter('fa.single.image.email_template_email_template_image.upload_to_aws');
-            $isOriginalUpload = $this->container->getParameter('fa.single.image.email_template_email_template_image.is_original_upload');
-
-            $emailTemplate = $this->getEmailTemplate($emailIdentifier, $locale);
-            $mailVars['hero_image'] = (!empty($emailTemplate->getImage()) ? UF::get('Fads', $this->container)::getEntityImageUrl($this->container, 'single', 'email_template_email_template_image', $emailTemplate->getId(), $emailTemplate->getImage(), null, null, $uploadToAws, $isOriginalUpload, false) : null);
-            $mailVars['email_body'] = $this->renderTwig($emailTemplate->getBodyHtml(), $mailVars);
-
-            if (!$this->getMessage()->getFrom()) {
-                $this->setFrom($emailTemplate->getSenderEmail(), $emailTemplate->getSenderName());
-            }
-
-            $subject = $this->renderTwig($emailTemplate->getSubject(), $mailVars);
-            $body = $this->renderTwig($emailTemplateLayoutHtml, $mailVars);
-
-            $this->setSubject($subject);
-            $this->setBody("asdasdadsadas");
-
-//            $mailVars['email_body'] = $this->renderTwig($emailTemplate->getBodyText(), $mailVars);
-//            $alternateBody = $this->renderTwig($emailTemplateLayoutText, $mailVars);
-//            $this->setAlternateBody($alternateBody);
-        } catch (\Exception $e) {
-//            UF::get('Fads', $this->container)::sendErrorMail($this->container, 'Error: Mail manager render', $e->getMessage(), $e->getTraceAsString());
+        if (!$this->getMessage()->getFrom()) {
+            $this->setFrom($emailTemplate->getSenderEmail(), $emailTemplate->getSenderName());
         }
+        $emailTemplateLayoutHtml = $emailTemplate->getBodyHtml();
+
+        $subject = $this->renderTwig($emailTemplate->getSubject(), $mailVars);
+        $body = $this->renderTwig($emailTemplateLayoutHtml, $mailVars);
+
+        $this->setSubject($subject);
+        $this->setBody($body);
+
     }
 
     /**
@@ -324,23 +289,16 @@ class MailManager
      *
      * @return string
      */
-    public function getEmailTemplate($emailIdentifier, $locale = '')
+    public function getEmailTemplate($emailIdentifier)
     {
-//        if(empty($locale))
-//            $locale = $this->container->getParameter('locale');
-//
-//        try {
-//            //$emailTemplate = $this->getEntityManager()->getRepository('App\Entity\EmailTemplate')->findOneByIdentifierAndLocale($emailIdentifier, $locale);
-//            $emailTemplate = UF::get('Fads', $this->container)::getService('email_template', $this->container)->findOneByIdentifierAndLocale($emailIdentifier, $locale);
-//
-//            if (!$emailTemplate) {
-//                throw new \Exception('Email template not found');
-//            }
-//
-//            return $emailTemplate;
-//        } catch (\Exception $e) {
-//            throw $e;
-//        }
+        $emailTemplate = $this->emailTemplateRepository->findOneByIdentifier($emailIdentifier);
+
+        if (!$emailTemplate) {
+            throw new \Exception('Email template not found');
+        }
+
+        return $emailTemplate;
+
     }
 
     /**
@@ -353,21 +311,18 @@ class MailManager
      */
     public function renderTwig($text, $vars)
     {
-        $loader = new \Twig_Loader_Array(['index.html' => $text]);
-        $twig = new \Twig_Environment($loader);
-        $twig->addExtension($this->container->get('fa.core.twig.core_extension'));
-
-        return $twig->render('index.html', $vars);
-
-        /*
-        $loader = new \Twig_Loader_String();
-        $twig   = new \Twig_Environment($loader);
-
-        $twig->addExtension($this->container->get('fa.core.twig.core_extension'));
+        $template = $this->container->get('twig')->createTemplate($text);
+        return $template->render($vars);
 
 
-        $template = $twig->loadTemplate($text);
-
-        return $template->render($vars);*/
+//        $loader = new Twig_Loader_String();
+//        $twig   = new Twig_Environment($loader);
+//
+//        $twig->addExtension($this->container->get('fa.core.twig.core_extension'));
+//
+//
+//        $template = $twig->loadTemplate($text);
+//
+//        return $template->render($vars);
     }
 }
