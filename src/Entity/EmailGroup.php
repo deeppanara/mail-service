@@ -48,7 +48,7 @@ class EmailGroup
     /**
      * @var bool
      *
-     * @ORM\Column(name="status", type="smallint", nullable=true, options={"default" = 1})
+     * @ORM\Column(name="status", type="smallint", options={"default" = 1})
      */
     private $status;
 

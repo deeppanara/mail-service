@@ -12,13 +12,14 @@
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\EmailTemplate;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface
+class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     /**
      * Container.
@@ -42,23 +43,14 @@ class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface
     /**
      * Load data fixtures with the passed entity manager.
      *
-     * @param Doctrine\Common\Persistence\ObjectManager $em
+     * @param ObjectManager $em
      */
     public function load(ObjectManager $em)
     {
-//        $senderEmailS = $this->container->getParameter('mailer_sender_email');
-//        $senderNameS = $this->container->getParameter('mailer_sender_name');
-
-
         // Set class meta data
         $metadata = $em->getClassMetaData('App\Entity\EmailTemplate');
         $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
-        $id = 1;
-
-        // Load enabled locale
-//        $localeEnabled = $this->container->getParameter('locale_enabled');
-//        $defaultLocale = $this->container->getParameter('locale');
 
         $bodyHtml = <<<EOD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -76,8 +68,6 @@ class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface
 </html>
 EOD;
 
-        // set email template
-        $variableArray = ['{{ site_url }}', '{{ service }}', '{{ email_body|raw }}'];
         $slugger = new AsciiSlugger();
         $slug = $slugger->slug('Email Template Layout');
 
@@ -87,7 +77,6 @@ EOD;
         $emailtemplate->setSubject('Email Template Layout');
         $emailtemplate->setBodyHtml($bodyHtml);
         $emailtemplate->setBodyText('{{ email_body }}');
-        $emailtemplate->setVariable(serialize($variableArray));
         $emailtemplate->setSenderEmail("test@test.com");
         $emailtemplate->setSenderName("test");
         $emailtemplate->setStatus(1);
@@ -104,7 +93,6 @@ EOD;
 EOD;
 
         // set email template
-        $variableArray = ['{{ site_url }}', '{{ service }}', '{{ email_body|raw }}'];
         $slugger = new AsciiSlugger();
         $slug = $slugger->slug('Email Registration');
 
@@ -113,7 +101,6 @@ EOD;
         $emailtemplate->setName('registration email');
         $emailtemplate->setSubject('registration');
         $emailtemplate->setBodyHtml($bodyHtml);
-        $emailtemplate->setVariable(serialize($variableArray));
         $emailtemplate->setSenderEmail("test@test.com");
         $emailtemplate->setSenderName("test");
         $emailtemplate->setStatus(1);
@@ -129,7 +116,6 @@ EOD;
 EOD;
 
         // set email template
-        $variableArray = ['{{ site_url }}', '{{ service }}', '{{ email_body|raw }}'];
         $slugger = new AsciiSlugger();
         $slug = $slugger->slug('Email reset password');
 
@@ -138,7 +124,6 @@ EOD;
         $emailtemplate->setName('Email reset password');
         $emailtemplate->setSubject('reset your password here');
         $emailtemplate->setBodyHtml($bodyHtml);
-        $emailtemplate->setVariable(serialize($variableArray));
         $emailtemplate->setSenderEmail("test@test.com");
         $emailtemplate->setSenderName("test");
         $emailtemplate->setStatus(1);
@@ -146,36 +131,15 @@ EOD;
         $em->persist($emailtemplate);
         $em->flush();
         $em->clear();
-//        // check whether file is present
-//        $path = UF::get('Fads', $this->container)::getFixtureFile('src\\DataFixtures\\EmailTemplate\\', 'emailTemplate.csv', __DIR__, 'EmailTemplate');
-//
-//        if (false !== ($reader = new \EasyCSV\Reader($path))) {
-//            $reader->setDelimiter(';');
-//            while ($row = $reader->getRow()) {
-//                $variableArray = isset($row['variables']) ? explode(',', $row['variables']) : [];
-//                $slugger = new AsciiSlugger();
-//                $slug = $slugger->slug($row['subject']);
-//
-//
-//                $emailtemplate = new EmailTemplate();
-//                $emailtemplate->setIdentifier($slug);
-//                $emailtemplate->setName($row['name']);
-//                $emailtemplate->setSubject($row['subject']);
-//                $emailtemplate->setVariable(serialize($variableArray));
-//                $htmlFilePathDefault = UF::get('Fads', $this->container)::getFixtureFile('src\\DataFixtures\\EmailTemplate\\', 'en/html/'.$row['html_file_name'], __DIR__, 'EmailTemplate');
-//                $emailtemplate->setBodyHtml(file_get_contents($htmlFilePathDefault));
-//                $textFilePathDefault = UF::get('Fads', $this->container)::getFixtureFile('src\\DataFixtures\\EmailTemplate\\', 'en/text/'.$row['text_file_name'], __DIR__, 'EmailTemplate');
-//                $emailtemplate->setBodyText(file_get_contents($textFilePathDefault));
-//                $emailtemplate->setSenderEmail('test@test.com');
-//                $emailtemplate->setSenderName('test');
-//
-//                $emailtemplate->setStatus(1);
-//
-//                $em->persist($emailtemplate);
-//                $em->flush();
-//                $em->clear();
-//                ++$id;
-//            }
-//        }
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return int
+     */
+    public function getOrder()
+    {
+        10000;
     }
 }

@@ -12,6 +12,8 @@
 namespace App\Entity;
 
 use App\Entity\Traits\TimestampableTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,13 +87,6 @@ class EmailTemplate
     /**
      * @var string
      *
-     * @ORM\Column(name="variable", type="text", nullable=true)
-     */
-    private $variable;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="sender_email", type="string", length=255)
      */
     private $sender_email;
@@ -111,11 +106,17 @@ class EmailTemplate
     private $status;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\EmailTag", inversedBy="email_template")
+     * @ORM\JoinTable(name="email_template_tag")
+     */
+    private $tags;
+
+    /**
      * Construct.
      */
     public function __construct()
     {
-
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -263,30 +264,6 @@ class EmailTemplate
     }
 
     /**
-     * Set variable.
-     *
-     * @param string $variable
-     *
-     * @return EmailTemplate
-     */
-    public function setVariable($variable)
-    {
-        $this->variable = $variable;
-
-        return $this;
-    }
-
-    /**
-     * Get variable.
-     *
-     * @return string
-     */
-    public function getVariable()
-    {
-        return $this->variable;
-    }
-
-    /**
      * Set sender email.
      *
      * @param string $senderEmail
@@ -405,5 +382,26 @@ class EmailTemplate
         $this->email_group = $email_group;
     }
 
+    /**
+     * @return Collection|EmailTag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+    public function addTag(EmailTag $tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+        return $this;
+    }
+    public function removeTag(EmailTag $tag)
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
+        }
+        return $this;
+    }
 
 }

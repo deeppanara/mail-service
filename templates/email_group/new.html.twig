@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EmailGroup{% endblock %}
+
+{% block body %}
+    <h1>Create new EmailGroup</h1>
+
+    {{ include('email_group/_form.html.twig') }}
+
+    <a href="{{ path('email_group_index') }}">back to list</a>
+{% endblock %}

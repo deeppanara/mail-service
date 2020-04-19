@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailTag{% endblock %}
+
+{% block body %}
+    <h1>EmailTag</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ email_tag.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ email_tag.code }}</td>
+            </tr>
+            <tr>
+                <th>Default</th>
+                <td>{{ email_tag.default }}</td>
+            </tr>
+            <tr>
+                <th>Decreption</th>
+                <td>{{ email_tag.decreption }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ email_tag.createdAt }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ email_tag.updatedAt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('email_tag_index') }}">back to list</a>
+
+    <a href="{{ path('email_tag_edit', {'id': email_tag.id}) }}">edit</a>
+
+    {{ include('email_tag/_delete_form.html.twig') }}
+{% endblock %}

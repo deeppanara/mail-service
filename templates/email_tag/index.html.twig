@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailTag index{% endblock %}
+
+{% block body %}
+    <h1>EmailTag index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Default</th>
+                <th>Decreption</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email_tag in email_tags %}
+            <tr>
+                <td>{{ email_tag.id }}</td>
+                <td>{{ email_tag.code }}</td>
+                <td>{{ email_tag.default }}</td>
+                <td>{{ email_tag.decreption }}</td>
+                <td>{{ email_tag.createdAt }}</td>
+                <td>{{ email_tag.updatedAt }}</td>
+                <td>
+                    <a href="{{ path('email_tag_show', {'id': email_tag.id}) }}">show</a>
+                    <a href="{{ path('email_tag_edit', {'id': email_tag.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('email_tag_new') }}">Create new</a>
+{% endblock %}
