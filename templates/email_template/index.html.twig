@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr class="bg-slate">
@@ -40,7 +41,7 @@
                 <th class="text-center">Sender Email</th>
                 <th class="text-center">Sender Name</th>
                 <th class="text-center">Status</th>
-                <th class="text-center">Created At</th>
+                <th class="text-center">Campaign</th>
                 <th class="text-center">Updated At</th>
                 <th class="text-center">Has Layout</th>
                 <th class="text-center">Actions</th>
@@ -48,16 +49,17 @@
         </thead>
         <tbody>
             {% for email_template in email_templates %}
+
                 <tr class="bg-light">
-                    <td>{{ email_template.id }}</td>
-                    <td>{{ email_template.name }}</td>
-                    <td>{{ email_template.subject }}</td>
-                    <td>{{ email_template.senderEmail }}</td>
-                    <td>{{ email_template.senderName }}</td>
-                    <td>{{ email_template.status }}</td>
-                    <td>{{ email_template.createdAt }}</td>
-                    <td>{{ email_template.updatedAt }}</td>
-                    <td>{{ email_template.hasLayout ? 'Yes' : 'No' }}</td>
+                    <td class="text-center">{{ email_template.id }}</td>
+                    <td class="text-center">{{ email_template.name }}</td>
+                    <td class="text-center">{{ email_template.subject }}</td>
+                    <td class="text-center">{{ email_template.senderEmail }}</td>
+                    <td class="text-center">{{ email_template.senderName }}</td>
+                    <td class="text-center">{{ email_template.status ? '<span class="badge badge-primary">Active</span>' : '<span class="badge badge-secondary">Inactive</span>' }}</td>
+                    <td class="text-center">{{ email_template.emailGroup.name }}</td>
+                    <td class="text-center">{{ email_template.updatedAt|date('d-m-Y') }}</td>
+                    <td class="text-center">{{ email_template.hasLayout ? 'Yes' : 'No' }}</td>
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
