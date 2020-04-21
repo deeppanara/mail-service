@@ -60,6 +60,11 @@ class EmailGroup
 
     }
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * Set id.
      *

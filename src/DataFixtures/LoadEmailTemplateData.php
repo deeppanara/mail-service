@@ -11,15 +11,17 @@
 
 namespace App\DataFixtures;
 
+use App\Repository\EmailGroupRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use App\Entity\EmailTemplate;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface, DependentFixtureInterface
 {
     /**
      * Container.
@@ -27,6 +29,15 @@ class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface, 
      * @var ContainerInterface
      */
     private $container;
+    /**
+     * @var EmailGroupRepository
+     */
+    private $emailGroupRepository;
+
+    public function __construct(EmailGroupRepository $emailGroupRepository)
+    {
+        $this->emailGroupRepository = $emailGroupRepository;
+    }
 
     /**
      * Sets the Container.
@@ -51,6 +62,7 @@ class LoadEmailTemplateData extends Fixture implements ContainerAwareInterface, 
         $metadata = $em->getClassMetaData('App\Entity\EmailTemplate');
         $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
 
+        $emilGroups = $this->emailGroupRepository->findAll();
 
         $bodyHtml = <<<EOD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -73,6 +85,7 @@ EOD;
 
         $emailtemplate = new EmailTemplate();
         $emailtemplate->setIdentifier($slug);
+//        $emailtemplate->setEmailGroup($emilGroups[array_rand($emilGroups)]);
         $emailtemplate->setName('Email Template Layout');
         $emailtemplate->setSubject('Email Template Layout');
         $emailtemplate->setBodyHtml($bodyHtml);
@@ -98,6 +111,7 @@ EOD;
 
         $emailtemplate = new EmailTemplate();
         $emailtemplate->setIdentifier($slug);
+//        $emailtemplate->setEmailGroup($emilGroups[array_rand($emilGroups)]);
         $emailtemplate->setName('registration email');
         $emailtemplate->setSubject('registration');
         $emailtemplate->setBodyHtml($bodyHtml);
@@ -121,6 +135,7 @@ EOD;
 
         $emailtemplate = new EmailTemplate();
         $emailtemplate->setIdentifier($slug);
+//        $emailtemplate->setEmailGroup($emilGroups[array_rand($emilGroups)]);
         $emailtemplate->setName('Email reset password');
         $emailtemplate->setSubject('reset your password here');
         $emailtemplate->setBodyHtml($bodyHtml);
@@ -134,12 +149,12 @@ EOD;
     }
 
     /**
-     * Get the order of this fixture
-     *
-     * @return int
+     * @inheritDoc
      */
-    public function getOrder()
+    public function getDependencies()
     {
-        10000;
+        return [
+            EmailGroupData::class
+        ];
     }
 }
