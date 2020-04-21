@@ -152,7 +152,7 @@ class EmailTemplate
      */
     public function setIdentifier($identifier)
     {
-        $this->identifier = $identifier;
+        $this->identifier = strtoupper($identifier);
 
         return $this;
     }

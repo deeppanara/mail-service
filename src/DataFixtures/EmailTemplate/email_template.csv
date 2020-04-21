@@ -1,0 +1,40 @@
+name;subject;html_file_name
+User package;Here is your receipt for subscription en;user_subscription.html
+Ad Review;You have a review;ad_review.html
+Welcome to your account;Welcome to your Fiare account;user_register.html
+Ad booking request message;Ad booking request message;ad_booking_request_message.html
+Ad Review Response;You have a review response;ad_review_response.html
+Matching ads for SA;Here are objects on {{service}} that match your search agent;matched_searchagent_email_alert.html
+Ad package;Here is your receipt for ad package en;ad_package.html
+Reset Password Link;Resetting your password;reset_password_link.html
+Password was changed;Your password was changed.;password_reset_confirmation.html
+Advert receipt;Here is your advert receipt en;advert_receipt.html
+Feedback Reply;Your feedback Reply;feedback_reply.html
+Feedback Forward;FWD: feedback forward;feedback_forward.html
+List Export;Export: Your export is ready;list_export.html
+Email Verification;Please confirm your {{service}} account.;email_verification.html
+Order receipt;Here is your order receipt en;order_receipt.html
+You have a message - General;You have a new message;inquiry_message.html
+Item expiry reminder;Item expiration reminder;ad_expiry_reminder_message.html
+Upsell package expiry reminder;Upsell package expiration reminder;package_expiry_reminder_message.html
+Item in DRAFT mode;Your ad {{item_title}} , ID: {{item_id}} on {{portal_name}} is still just a draft. Do you want to put it live now?;item_in_draft_message.html
+Several Items in DRAFT mode;Wow, so many drafts! Do you want to put them live now?;several_item_in_draft_message.html
+Several Item expiry reminder;Oh no, soo your ads are expiring..;several_item_expiry_reminder_message.html
+Confirmation placing a search agent;Your {{service}}-search agent was placed.;search_agent_confirm.html
+User not logged in for a while (company user);It's been a while since you’ve been active on {{service}};user_has_not_logged_for_a_while_corporate.html
+User not logged in for a while (private user);It has been a while. Come visit {{service}} to discover new interesting items;user_has_not_logged_for_a_while_private.html
+User hasn’t confirmed his/her email address;Your {{service}} account is not yet confirmed.;user_has_not_confirmed_email_address.html
+Admin created account;Welcome to {{service}}-;admin_registration_account.html
+User hasn’t placed any ads yet;Get your stock out in the world! Place new ads on {{portal_name}};user_has_not_placed_an_ad.html
+User hasn’t placed any ads for a while;We miss you. Place new ads on {{portal_name}};user_has_not_placed_an_ad_for_a_while.html
+Subscription is ending;Your{{subscription_name}}-package is expiring..;subscription_is_ending_message.html
+Subscription ended;Your{{subscription_name}}-package has expired..;subscription_has_ended_message.html
+Confirmation placing an ad;Your ad “{{title}}” , ID: {{ID}} was placed successful on {{service}}.;confirmation_placing_an_ad_message.html
+Confirmation of subscription bought;Congratulations, you are now a {{subscription_name}}-user on {{service}};confirmation_of_subscription_bought_message.html
+Item expired;Ad expired;item_expired_message.html
+Several Item expired;Oh no, soo your ads expired.;several_item_expired_message.html
+Ad moderation notification;Ad moderation notification;advert_moderation_notification.html
+Registration completion for normal user;Your {{service}} account is now verified;registration_completion_for_normal_user.html
+Registration completion for company account;Your {{service}} business-account is now verified;registration_completion_for_company_account.html
+Subscription package activated;Your{{subscription_name}}-package has activated..;subscription_has_activated_message.html
+New Feedback;Feedback: New feedback received;feedback_new.html

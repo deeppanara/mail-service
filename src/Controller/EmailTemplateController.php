@@ -21,12 +21,6 @@ class EmailTemplateController extends AbstractController
      */
     public function index(EmailTemplateRepository $emailTemplateRepository, MailManager $mailManager): Response
     {
-
-        $mailManager->init();
-        $mailManager->setTo('recipient222@example.com');
-        $mailManager->render('Email-Registration', []);
-        $mailManager->send();
-
         return $this->render('email_template/index.html.twig', [
             'email_templates' => $emailTemplateRepository->findAll(),
         ]);

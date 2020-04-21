@@ -108,6 +108,9 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "jwage/easy-csv": {
+        "version": "1.0.0"
+    },
     "monolog/monolog": {
         "version": "2.0.2"
     },
