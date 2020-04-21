@@ -9,7 +9,6 @@
     <div class="flex-fill overflow-auto">
         <!-- Single mail -->
         <div class="card">
-
             <!-- Action toolbar -->
             <div class="navbar navbar-light navbar-expand-lg shadow-0 py-lg-2 rounded-top">
                 <div class="text-center d-lg-none w-100">
@@ -19,8 +18,9 @@
                 </div>
                 <div class="navbar-collapse text-center text-lg-left flex-wrap collapse" >
                     <div class="mt-3 mt-lg-0 mr-lg-3">
-
-                        <a class="btn btn-outline-success btn-sm" href="{{ path('email_template_edit', {'id': email_template.id}) }}"><i class="icon-pencil"></i><span class="d-none d-lg-inline-block ml-2">edit</span></a>
+                        <a class="btn btn-outline-success btn-sm mr-1" href="{{ path('email_template_edit', {'id': email_template.id}) }}"><i class="icon-pencil"></i><span class="d-none d-lg-inline-block ml-2">edit</span></a>
+                        <a class="btn btn-outline-success btn-sm mr-1" href="#"><i class="icon-paperplane"></i><span class="d-none d-lg-inline-block ml-2">Send sample</span></a>
+                        <a class="btn btn-outline-success btn-sm mr-1" href="#"><i class="icon-file-pdf"></i><span class="d-none d-lg-inline-block ml-2">export</span></a>
                     </div>
 
                     <div class="mt-3 mt-lg-0 ml-lg-auto">
@@ -34,8 +34,8 @@
             <div class="card-body border-top">
                 <div class="media flex-column flex-md-row">
                     <a href="#" class="d-none d-md-block mr-md-3 mb-3 mb-md-0">
-                        <span class="btn bg-teal-400 btn-icon btn-lg rounded-round">
-                            <span class="letter-icon">{{ email_template.senderName|slice(0, 1)|lower }}</span>
+                        <span class="btn bg-slate btn-icon btn-lg rounded-round">
+                            <span class="letter-icon ">{{ email_template.senderName|slice(0, 1)|lower }}</span>
                         </span>
                     </a>
 
@@ -52,8 +52,8 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td class="align-top py-0" style="width: 10%">
-                                <div class="py-2 mr-sm-3">Identifier:</div>
+                            <td class="align-top py-0" style="width: 15%">
+                                <div class="py-2 mr-sm-3">Unice Identifier For Send:</div>
                             </td>
                             <td class="align-top py-0">
                                 <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
@@ -62,7 +62,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-top py-0" style="width: 10%">
+                            <td class="align-top py-0" style="width: 15%">
                                 <div class="py-2 mr-sm-3">Name:</div>
                             </td>
                             <td class="align-top py-0">
@@ -72,7 +72,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="align-top py-0" style="width: 10%">
+                            <td class="align-top py-0" style="width: 15%">
                                 <div class="py-2 mr-sm-3">Camapin:</div>
                             </td>
                             <td class="align-top py-0">
@@ -85,7 +85,14 @@
                 </table>
             </div>
             <!-- /mail details -->
+
+            <!-- Mail details -->
+            <div class="card-body border-top ">
+                <iframe width="100%" height="100%" style="border: none" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameborder="0" scrolling="no" src="{{ path('email_template_show_preview', {'id': email_template.id }) }}"></iframe>
+            </div>
+            <!-- /mail details -->
         </div>
+
         <!-- /single mail -->
     </div>
 {% endblock %}

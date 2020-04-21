@@ -60,6 +60,13 @@ class EmailTemplateController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/preview", name="email_template_show_preview", methods={"GET"})
+     */
+    public function preview(EmailTemplate $emailTemplate): Response
+    {
+        return new Response($emailTemplate->getBodyHtml());
+    }
+    /**
      * @Route("/{id}/edit", name="email_template_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, EmailTemplate $emailTemplate): Response

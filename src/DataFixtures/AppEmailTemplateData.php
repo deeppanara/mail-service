@@ -44,8 +44,8 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
                 $emailtemplate->setName($row['name']);
                 $emailtemplate->setSubject($row['subject']);
                 $emailtemplate->setBodyHtml($header.file_get_contents(__DIR__.'/EmailTemplate/en/html/'. $row['html_file_name']).$footer);
-                $emailtemplate->setSenderEmail("test@test.com");
-                $emailtemplate->setSenderName("test");
+                $emailtemplate->setSenderEmail("cosmos@dom.com");
+                $emailtemplate->setSenderName("Cosmos Dom");
                 $emailtemplate->setStatus(1);
 
                 $em->persist($emailtemplate);
