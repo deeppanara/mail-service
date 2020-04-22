@@ -101,26 +101,3 @@ col-sm-10
         </div>{#--#}
     </div>
 {%- endblock reset_row %}
-
-{% block form_field -%}
-    {{ form_widget(form) }}
-    {{ form_errors(form) }}
-    {{ form_help(form) }}
-{%- endblock form_field %}
-
-{% block form_simple_row -%}
-    <div class="form-group row">
-        {{ form_label(form) }}
-        <div class="col-9">
-            {{ form_field(form) }}
-        </div>
-    </div>
-{%- endblock form_simple_row %}
-
-{% block form_save -%}
-    <div class="text-right">
-        <button type="submit" class="btn btn-primary"><i class="icon-check mr-2"></i> save</button>
-        <button type="reset" class="btn btn-warning"><i class="icon-reset mr-2"></i> reset</button>
-    </div>
-{%- endblock form_save %}
-

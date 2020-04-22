@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\EmailTemplate;
 use App\Repository\EmailGroupRepository;
+use App\Repository\EmailTagRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -15,15 +16,21 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
      * @var EmailGroupRepository
      */
     private $emailGroupRepository;
+    /**
+     * @var EmailTagRepository
+     */
+    private $emailTagRepository;
 
-    public function __construct(EmailGroupRepository $emailGroupRepository)
+    public function __construct(EmailGroupRepository $emailGroupRepository, EmailTagRepository $emailTagRepository)
     {
         $this->emailGroupRepository = $emailGroupRepository;
+        $this->emailTagRepository = $emailTagRepository;
     }
 
     public function load(ObjectManager $em)
     {
         $emilGroups = $this->emailGroupRepository->findAll();
+        $emilTages = $this->emailTagRepository->findAll();
 
         // check whether file is present
         $path = __DIR__.'/EmailTemplate/email_template.csv';
@@ -48,6 +55,9 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
                 $emailtemplate->setSenderName("Cosmos Dom");
                 $emailtemplate->setStatus(1);
 
+                foreach ($emilTages as $emilTage) {
+                    $emailtemplate->addTag($emilTage);
+                }
                 $em->persist($emailtemplate);
                 $em->flush();
             }
@@ -233,10 +243,14 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
                     </div>
                 </td>
             </tr>
-            
+             <tr>
+                <td>
+                
 EOD;
 $bodyHtml[] = <<<EOD
 
+                </td>
+            </tr>
             <tr>
                 <td class="footer">
                     <table class="footer-top" align="center">

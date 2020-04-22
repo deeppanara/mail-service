@@ -17,14 +17,14 @@ class EmailTemplateType extends AbstractType
             ->add('subject')
             ->add('body_html')
             ->add('body_text')
-            ->add('sender_email')
-            ->add('sender_name')
-            ->add('status')
-            ->add('has_layout')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('email_group')
-            ->add('tags')
+//            ->add('sender_email')
+//            ->add('sender_name')
+//            ->add('status')
+//            ->add('has_layout')
+//            ->add('created_at')
+//            ->add('updated_at')
+//            ->add('email_group')
+//            ->add('tags')
         ;
     }
 

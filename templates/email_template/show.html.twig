@@ -2,97 +2,210 @@
 
 {% block header_title %}
     <a class="btn-large" href="{{ path('email_template_index') }}"><i class="icon-arrow-left52 mr-2"></i></a>
-    Email Template #{{ email_template.id }}
+    Preview Email Template #{{ email_template.id }}
 {% endblock %}
 
 {% block body %}
-    <div class="flex-fill overflow-auto">
-        <!-- Single mail -->
-        <div class="card">
-            <!-- Action toolbar -->
-            <div class="navbar navbar-light navbar-expand-lg shadow-0 py-lg-2 rounded-top">
-                <div class="text-center d-lg-none w-100">
-                    <button type="button" class="navbar-toggler w-100 h-100" data-toggle="collapse" data-target="#inbox-toolbar-toggle-write">
-                        <i class="icon-circle-down2"></i>
-                    </button>
-                </div>
-                <div class="navbar-collapse text-center text-lg-left flex-wrap collapse" >
-                    <div class="mt-3 mt-lg-0 mr-lg-3">
-                        <a class="btn btn-outline-success btn-sm mr-1" href="{{ path('email_template_edit', {'id': email_template.id}) }}"><i class="icon-pencil"></i><span class="d-none d-lg-inline-block ml-2">edit</span></a>
-                        <a class="btn btn-outline-success btn-sm mr-1" href="#"><i class="icon-paperplane"></i><span class="d-none d-lg-inline-block ml-2">Send sample</span></a>
-                        <a class="btn btn-outline-success btn-sm mr-1" href="#"><i class="icon-file-pdf"></i><span class="d-none d-lg-inline-block ml-2">export</span></a>
+    
+    <div class="card-body">
+        <div class="d-md-flex">
+            <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-200 mb-md-0 border-bottom-0">
+                <li class="nav-item"><a href="#vertical-left-statistics" class="nav-link active" data-toggle="tab"><i class="icon-graph mr-2"></i> Statistics</a></li>
+                <li class="nav-item"><a href="#vertical-left-fields" class="nav-link" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Fields</a></li>
+                <li class="nav-item"><a href="#vertical-left-template" class="nav-link" data-toggle="tab"><i class="icon-html52 mr-2"></i> Email Template</a></li>
+                <li class="nav-item"><a href="#vertical-left-tags" class="nav-link" data-toggle="tab"><i class="icon-code mr-2"></i> Tags</a></li>
+                <li class="mt-0 mb-2">
+                    <hr class="m-0">
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    <a class="btn btn-outline-primary btn-sm m-1 btn-block" href="{{ path('email_template_edit', {'id': email_template.id}) }}"><i class="icon-pencil"></i><span class="d-none d-lg-inline-block ml-2">edit</span></a>
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    <a class="btn btn-outline-primary btn-sm m-1 btn-block" href="#"><i class="icon-paperplane"></i><span class="d-none d-lg-inline-block ml-2">Send sample</span></a>
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    <a class="btn btn-outline-primary btn-sm m-1 btn-block" href="#"><i class="icon-file-pdf"></i><span class="d-none d-lg-inline-block ml-2">export</span></a>
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    {{- include('email_template/_delete_form.html.twig') -}}
+                </li>
+            </ul>
+
+            <div class="tab-content" style="width: 100%">
+                <div class="tab-pane fade active" id="vertical-left-statistics">
+                    <div class="row">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card card-body">
+                                <div class="media">
+                                    <div class="mr-3 align-self-center">
+                                        <i class="icon-pointer icon-3x text-success-400"></i>
+                                    </div>
+
+                                    <div class="media-body text-right">
+                                        <h3 class="font-weight-semibold mb-0">652,549</h3>
+                                        <span class="text-uppercase font-size-sm text-muted">total clicks</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card card-body">
+                                <div class="media">
+                                    <div class="mr-3 align-self-center">
+                                        <i class="icon-enter6 icon-3x text-indigo-400"></i>
+                                    </div>
+
+                                    <div class="media-body text-right">
+                                        <h3 class="font-weight-semibold mb-0">245,382</h3>
+                                        <span class="text-uppercase font-size-sm text-muted">total visits</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h3 class="font-weight-semibold mb-0">54,390</h3>
+                                        <span class="text-uppercase font-size-sm text-muted">total comments</span>
+                                    </div>
+
+                                    <div class="ml-3 align-self-center">
+                                        <i class="icon-bubbles4 icon-3x text-blue-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="card card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h3 class="font-weight-semibold mb-0">389,438</h3>
+                                        <span class="text-uppercase font-size-sm text-muted">total orders</span>
+                                    </div>
+
+                                    <div class="ml-3 align-self-center">
+                                        <i class="icon-bag icon-3x text-danger-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="mt-3 mt-lg-0 ml-lg-auto">
-                        {{- include('email_template/_delete_form.html.twig') -}}
+                </div>
+
+                <div class="tab-pane fade" id="vertical-left-fields">
+                    <!-- Mail details -->
+                    <div class="card-body border-top">
+                        <div class="media flex-column flex-md-row">
+                            <a href="#" class="d-none d-md-block mr-md-3 mb-3 mb-md-0">
+                                <span class="btn bg-slate btn-icon btn-lg rounded-round">
+                                    <span class="letter-icon ">{{ email_template.senderName|slice(0, 1)|lower }}</span>
+                                </span>
+                            </a>
+
+                            <div class="media-body">
+                                <h6 class="mb-0">{{ email_template.subject }}</h6>
+                                <div class="letter-icon-title font-weight-semibold"><span class="text-muted small">From: </span>{{ email_template.senderName }} <a href="#">&lt;{{ email_template.senderEmail }}t&gt;</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /mail details -->
+
+                    <!-- Mail details -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="align-top py-0" style="width: 15%">
+                                    <div class="py-2 mr-sm-3">Unice Identifier For Send:</div>
+                                </td>
+                                <td class="align-top py-0">
+                                    <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
+                                        {{ email_template.identifier }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-top py-0" style="width: 15%">
+                                    <div class="py-2 mr-sm-3">Name:</div>
+                                </td>
+                                <td class="align-top py-0">
+                                    <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
+                                        {{ email_template.name }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-top py-0" style="width: 15%">
+                                    <div class="py-2 mr-sm-3">Camapin:</div>
+                                </td>
+                                <td class="align-top py-0">
+                                    <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
+                                        {{ email_template.emailGroup.name }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-top py-0" style="width: 15%">
+                                    <div class="py-2 mr-sm-3">Status:</div>
+                                </td>
+                                <td class="align-top py-0">
+                                    <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
+                                        {{ email_template.status ? '<span class="badge badge-primary">Active</span>' : '<span class="badge badge-secondary">Inactive</span>' }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-top py-0" style="width: 15%">
+                                    <div class="py-2 mr-sm-3">Last Modified:</div>
+                                </td>
+                                <td class="align-top py-0">
+                                    <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
+                                        {{ email_template.updatedAt|date('d M h:m a') }}
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /mail details -->
+                </div>
+
+                <div class="tab-pane fade" id="vertical-left-template">
+                    <iframe id='iframe2' allowfullscreen src="{{ path('email_template_show_preview', {'id': email_template.id }) }}" frameborder="0" style="overflow: hidden; height: 1500px;width: 100%;"></iframe>
+                </div>
+
+                <div class="tab-pane fade" id="vertical-left-tags">
+                    <div class="row">
+                        {% for tag in email_template.tags %}
+                        <div class="col-md-2">
+                            <div class="card">
+                                <div class="card-header bg-light d-flex justify-content-between">
+                                    <span class="font-size-sm text-uppercase font-weight-semibold">{{ tag.code }}</span>
+                                </div>
+                                <div class="card-body">
+                                    {% if tag.decreption is not null %}
+                                        {{ tag.decreption }}
+                                    {% else %}
+                                        <p class="text-muted">Decreption Not Avalable.</p>
+                                    {% endif %}
+                                </div>
+                                <div class="card-footer bg-light d-flex justify-content-between">
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item"><a class="text-warning" href="#">Remove from This Email </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-            <!-- /action toolbar -->
 
-            <!-- Mail details -->
-            <div class="card-body border-top">
-                <div class="media flex-column flex-md-row">
-                    <a href="#" class="d-none d-md-block mr-md-3 mb-3 mb-md-0">
-                        <span class="btn bg-slate btn-icon btn-lg rounded-round">
-                            <span class="letter-icon ">{{ email_template.senderName|slice(0, 1)|lower }}</span>
-                        </span>
-                    </a>
-
-                    <div class="media-body">
-                        <h6 class="mb-0">{{ email_template.subject }}</h6>
-                        <div class="letter-icon-title font-weight-semibold">{{ email_template.senderName }} <a href="#">&lt;{{ email_template.senderEmail }}t&gt;</a></div>
-                    </div>
-                </div>
             </div>
-            <!-- /mail details -->
-
-            <!-- Mail details -->
-            <div class="table-responsive">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td class="align-top py-0" style="width: 15%">
-                                <div class="py-2 mr-sm-3">Unice Identifier For Send:</div>
-                            </td>
-                            <td class="align-top py-0">
-                                <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
-                                    {{ email_template.identifier }}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top py-0" style="width: 15%">
-                                <div class="py-2 mr-sm-3">Name:</div>
-                            </td>
-                            <td class="align-top py-0">
-                                <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
-                                    {{ email_template.name }}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-top py-0" style="width: 15%">
-                                <div class="py-2 mr-sm-3">Camapin:</div>
-                            </td>
-                            <td class="align-top py-0">
-                                <div class="d-sm-flex flex-sm-wrap py-2 px-0 border-0 rounded-0">
-                                    {{ email_template.emailGroup.name }}
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /mail details -->
-
-            <!-- Mail details -->
-            <div class="card-body border-top ">
-                <iframe width="100%" height="100%" style="border: none" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" frameborder="0" scrolling="no" src="{{ path('email_template_show_preview', {'id': email_template.id }) }}"></iframe>
-            </div>
-            <!-- /mail details -->
         </div>
-
-        <!-- /single mail -->
     </div>
 {% endblock %}
