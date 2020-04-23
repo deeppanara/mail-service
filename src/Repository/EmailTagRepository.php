@@ -4,7 +4,7 @@
 namespace App\Repository;
 
 /**
- * EmailTemplateRepository.
+ * EmailTagRepository.
  *
  * @author Deep Panara
  *

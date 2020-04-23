@@ -6,7 +6,6 @@
 {% endblock %}
 
 {% block body %}
-    
     <div class="card-body">
         <div class="d-md-flex">
             <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-200 mb-md-0 border-bottom-0">
@@ -32,7 +31,7 @@
             </ul>
 
             <div class="tab-content" style="width: 100%">
-                <div class="tab-pane fade active" id="vertical-left-statistics">
+                <div class="tab-pane fade active show" id="vertical-left-statistics">
                     <div class="row">
                         <div class="col-sm-6 col-xl-3">
                             <div class="card card-body">
@@ -182,7 +181,7 @@
                 <div class="tab-pane fade" id="vertical-left-tags">
                     <div class="row">
                         {% for tag in email_template.tags %}
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="card">
                                 <div class="card-header bg-light d-flex justify-content-between">
                                     <span class="font-size-sm text-uppercase font-weight-semibold">{{ tag.code }}</span>
@@ -196,7 +195,7 @@
                                 </div>
                                 <div class="card-footer bg-light d-flex justify-content-between">
                                     <ul class="list-inline mb-0">
-                                        <li class="list-inline-item"><a class="text-warning" href="#">Remove from This Email </a></li>
+                                        <li class="list-inline-item"><a class="text-warning" href="#">Remove From This Email </a></li>
                                     </ul>
                                 </div>
                             </div>

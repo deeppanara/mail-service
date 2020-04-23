@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\EmailGroup;
+use App\Entity\EmailQueue;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
