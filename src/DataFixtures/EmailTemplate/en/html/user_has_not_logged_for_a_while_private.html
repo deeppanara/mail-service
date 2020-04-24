@@ -37,11 +37,6 @@
             {% for key,item in items %}
 
                 <td>
-                    {% if item.image is defined %}
-                    <img src="{{ item.image }}"><hr/>
-                    {% else %}
-                    <img src="{{ frontend_asset_url('/bundles/faffrontend/images/noimage-300x240.png') }}" /><hr/>
-                    {% endif %}<br/>
                     {% if item.title is defined %}
                     <h4>{{ item.title }}</h4>
                     {% endif %}<br/>

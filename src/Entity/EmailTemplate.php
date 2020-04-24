@@ -52,7 +52,7 @@ class EmailTemplate
     private $identifier;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EmailGroup")
+     * @ORM\ManyToOne(targetEntity="App\Entity\EmailGroup" )
      */
     private $email_group;
 
@@ -85,6 +85,13 @@ class EmailTemplate
     private $body_text;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="custom_tags", type="json", nullable=true)
+     */
+    private $custom_tags;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="sender_email", type="string", length=255)
@@ -110,6 +117,13 @@ class EmailTemplate
      * @ORM\JoinTable(name="email_template_tag")
      */
     private $tags;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="has_layout", type="boolean", nullable=true)
+     */
+    private $has_layout;
 
     /**
      * Construct.
@@ -336,13 +350,6 @@ class EmailTemplate
     }
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="has_layout", type="boolean", nullable=true)
-     */
-    private $has_layout;
-
-    /**
      * Get has layout.
      *
      * @return string
@@ -389,18 +396,49 @@ class EmailTemplate
     {
         return $this->tags;
     }
+
+    /**
+     * @param EmailTag $tag
+     * @return EmailTemplate
+     */
     public function addTag(EmailTag $tag)
     {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
         }
+
         return $this;
     }
+
+    /**
+     * @param EmailTag $tag
+     * @return EmailTemplate
+     */
     public function removeTag(EmailTag $tag)
     {
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCustomTags()
+    {
+        return $this->custom_tags;
+    }
+
+    /**
+     * @param array $custom_tags
+     * @return EmailTemplate
+     */
+    public function setCustomTags($custom_tags)
+    {
+        $this->custom_tags = $custom_tags;
+
         return $this;
     }
 

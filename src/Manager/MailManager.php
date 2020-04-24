@@ -5,7 +5,6 @@ namespace App\Manager;
 use App\Repository\EmailTemplateRepository;
 use http\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use function Couchbase\defaultDecoder;
 
 
 class MailManager
@@ -311,18 +310,19 @@ class MailManager
      */
     public function renderTwig($text, $vars)
     {
-        $template = $this->container->get('twig')->createTemplate($text);
-        return $template->render($vars);
+        $env = new \Twig\Environment(new \Twig\Loader\ArrayLoader([]), [
+            'debug' => false,
+            'charset' => 'UTF-8',
+            'strict_variables' => false,
+            'autoescape' => 'html',
+            'cache' => __DIR__.'/../templates/cache',
+            'auto_reload' => null,
+            'optimizations' => -1,
+        ]);
+        $env->addExtension(new \Twig\Extension\DebugExtension());
+        $template = $env->createTemplate($text);
+        $html = $template->render(array('name' => 'Bob'));
 
-
-//        $loader = new Twig_Loader_String();
-//        $twig   = new Twig_Environment($loader);
-//
-//        $twig->addExtension($this->container->get('fa.core.twig.core_extension'));
-//
-//
-//        $template = $twig->loadTemplate($text);
-//
-//        return $template->render($vars);
+        return $html;
     }
 }

@@ -55,9 +55,6 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
                 $emailtemplate->setSenderName("Cosmos Dom");
                 $emailtemplate->setStatus(1);
 
-                foreach ($emilTages as $emilTage) {
-                    $emailtemplate->addTag($emilTage);
-                }
                 $em->persist($emailtemplate);
                 $em->flush();
             }

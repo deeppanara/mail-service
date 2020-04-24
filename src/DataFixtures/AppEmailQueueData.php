@@ -22,6 +22,9 @@ class AppEmailQueueData extends Fixture
                 'name' => "ggggg"
             ]
         ]);
+        $emailQueue->setIsSent(9);
+        $emailQueue->setContent("gggggggggg");
+        $emailQueue->setSendAt(158759999);
         $em->persist($emailQueue);
 
 
