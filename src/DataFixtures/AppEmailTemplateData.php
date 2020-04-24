@@ -40,13 +40,9 @@ class AppEmailTemplateData extends Fixture implements DependentFixtureInterface
             while ($row = $reader->getRow()) {
 
                 $emailtemplate = new EmailTemplate();
-                $slugger = new AsciiSlugger();
                 $emilGroup = $emilGroups[array_rand($emilGroups)];
                 [$header, $footer] = $this->getHeaderFooterHtml();
 
-                $slug = $slugger->slug($emilGroup->getName() .' '. $row['name']);
-
-                $emailtemplate->setIdentifier($slug);
                 $emailtemplate->setEmailGroup($emilGroup);
                 $emailtemplate->setName($row['name']);
                 $emailtemplate->setSubject($row['subject']);

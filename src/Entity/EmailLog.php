@@ -23,7 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity(repositoryClass="App\Repository\EmailLogRepository")
  * @ORM\Table(
- *     name="email_Log",
+ *     name="email_log",
  * )
  * @ORM\HasLifecycleCallbacks
  */

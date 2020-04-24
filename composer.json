@@ -48,6 +48,9 @@
         "sort-packages": true
     },
     "autoload": {
+        "files": [
+            "src/Utils/Functions.php"
+        ],
         "psr-4": {
             "App\\": "src/"
         }

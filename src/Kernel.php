@@ -13,6 +13,8 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+    private static $_container;
+
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     public function registerBundles(): iterable
@@ -30,14 +32,9 @@ class Kernel extends BaseKernel
         return \dirname(__DIR__);
     }
 
-    public function getCacheDir()
+    public function getMailCacheDir()
     {
-        return \dirname(__DIR__).'/var/'.$this->environment.'/cache';
-    }
-
-    public function getLogDir()
-    {
-        return \dirname(__DIR__).'/var/'.$this->environment.'/log';
+        return \dirname(__DIR__).'/var/cache/mail';
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
@@ -60,5 +57,20 @@ class Kernel extends BaseKernel
         $routes->import($confDir.'/{routes}/'.$this->environment.'/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
         $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function boot()
+    {
+        parent::boot();
+
+        self::$_container = $this->container;
+    }
+
+    public static function getContainerStatic()
+    {
+        return self::$_container;
     }
 }

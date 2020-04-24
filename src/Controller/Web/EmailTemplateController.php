@@ -6,6 +6,7 @@ use App\Entity\EmailTemplate;
 use App\Form\EmailTemplateType;
 use App\Manager\MailManager;
 use App\Repository\EmailTemplateRepository;
+use ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

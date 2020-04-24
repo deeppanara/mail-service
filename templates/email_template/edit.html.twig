@@ -6,57 +6,7 @@
 {% endblock %}
 
 {% block body %}
-
-    <div class="card-body">
-        <div class="d-md-flex">
-            <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-200 mb-md-0 border-bottom-0">
-                <li class="nav-item"><a href="#vertical-left-tab1" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Fields</a></li>
-                <li class="nav-item"><a href="#vertical-left-tab2" class="nav-link" data-toggle="tab"><i class="icon-html52 mr-2"></i> Email Template</a></li>
-                <li class="nav-item"><a href="#vertical-left-tab4" class="nav-link" data-toggle="tab"><i class="icon-code mr-2"></i> Tags</a></li>
-                <li class="nav-item"><a href="#vertical-left-tab3" class="nav-link" data-toggle="tab"><i class="icon-graph mr-2"></i> Statistics</a></li>
-                <li class="nav-item"><a href="#vertical-left-tab5" class="nav-link" data-toggle="tab"><i class="icon-cog5 mr-2"></i> Dropdown</a></li>
-                <li class="mt-0 mb-2">
-                    <hr class="m-0">
-                </li>
-                <li class="list-inline-item mr-2 ml-0">
-                    <a class="btn btn-outline-success btn-sm m-1 btn-block" href="{{ path('email_template_edit', {'id': email_template.id}) }}"><i class="icon-pencil"></i><span class="d-none d-lg-inline-block ml-2">edit</span></a>
-                </li>
-                <li class="list-inline-item mr-2 ml-0">
-                    <a class="btn btn-outline-success btn-sm m-1 btn-block" href="#"><i class="icon-paperplane"></i><span class="d-none d-lg-inline-block ml-2">Send sample</span></a>
-                </li>
-                <li class="list-inline-item mr-2 ml-0">
-                    <a class="btn btn-outline-success btn-sm m-1 btn-block" href="#"><i class="icon-file-pdf"></i><span class="d-none d-lg-inline-block ml-2">export pdf</span></a>
-                </li>
-                <li class="list-inline-item mr-2 ml-0">
-                    <a class="btn btn-outline-success btn-sm m-1 btn-block" href="#"><i class="icon-file-pdf"></i><span class="d-none d-lg-inline-block ml-2">export</span></a>
-                </li>
-            </ul>
-
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="vertical-left-tab1">
-                    Basic vertical tabs with left nav using <code>.nav-tabs-vertical</code> class.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab2">
-                    Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid laeggin.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab3">
-                    DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg whatever.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab4">
-                    Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
-                </div>
-
-                <div class="tab-pane fade" id="vertical-left-tab5">
-                    Aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-{#    {{ include('email_template/_form.html.twig', {'button_label': 'Update'}) }}#}
+    {{ include('email_template/_form.html.twig', {'button_label': 'Update'}) }}
 
 {#    <a href="{{ path('email_template_index') }}">back to list</a>#}
 

@@ -47,7 +47,7 @@ class EmailTemplate
     /**
      * @var string
      *
-     * @ORM\Column(name="identifier", type="string", length=255, unique=true)
+     * @ORM\Column(name="identifier", type="string", length=255, unique=true, nullable=true))
      */
     private $identifier;
 
@@ -113,12 +113,6 @@ class EmailTemplate
     private $status;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\EmailTag", inversedBy="email_template")
-     * @ORM\JoinTable(name="email_template_tag")
-     */
-    private $tags;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="has_layout", type="boolean", nullable=true)
@@ -130,7 +124,7 @@ class EmailTemplate
      */
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
+
     }
 
     /**
@@ -158,17 +152,13 @@ class EmailTemplate
     }
 
     /**
-     * Set identifier.
+     * Set identifier value.
      *
-     * @param string $identifier
-     *
-     * @return EmailTemplate
+     * @ORM\PrePersist()
      */
-    public function setIdentifier($identifier)
+    public function setIdentifierValue()
     {
-        $this->identifier = strtoupper($identifier);
-
-        return $this;
+        $this->identifier = strtoupper(bin2hex(random_bytes(8)));
     }
 
     /**
@@ -387,40 +377,6 @@ class EmailTemplate
     public function setEmailGroup(?EmailGroup $email_group)
     {
         $this->email_group = $email_group;
-    }
-
-    /**
-     * @return Collection|EmailTag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param EmailTag $tag
-     * @return EmailTemplate
-     */
-    public function addTag(EmailTag $tag)
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param EmailTag $tag
-     * @return EmailTemplate
-     */
-    public function removeTag(EmailTag $tag)
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
-
-        return $this;
     }
 
     /**

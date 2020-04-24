@@ -37,7 +37,7 @@ class EmailGunAimCommand extends Command
             ->setHelp(<<<'EOF'
 The <info>%command.name%</info> Fire all mail form EmailTemplate by MailManger:
 
-<info>php %command.full_name%</info>
+<info>php bin/console mail:gun:aim</info>
 
 EOF
             );

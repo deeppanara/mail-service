@@ -11,7 +11,9 @@ class AppEmailQueueData extends Fixture
     public function load(ObjectManager $em)
     {
         $emailQueue = new EmailQueue();
-//        $emailQueue->setSendAt(158759999);
+        $emailQueue->setSendAt(158759999);
+//        $emailQueue->isSent(0);
+        $emailQueue->setContent("test");
         $emailQueue->setMailTo([
             [
                 'email' => "ddd@ddd1.com",

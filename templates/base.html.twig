@@ -25,12 +25,13 @@
     <script src="{{ asset('global_assets/js/plugins/loaders/blockui.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/ui/ripple.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/notifications/pnotify.min.js') }}"></script>
-    <script src="{{ asset('global_assets/js/plugins/notifications/bootbox.min.js') }}"></scrip
+    <script src="{{ asset('global_assets/js/plugins/notifications/bootbox.min.js') }}"></scrip>
 
     {#<script src="{{ asset('global_assets/js/demo_pages/extra_pnotify.js') }}"></script>#}
 
     <script src="{{ asset('global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script src="{{ asset('global_assets/js/plugins/forms/styling/switch.min.js') }}"></script>
     <script src="{{ asset('global_assets/js/demo_pages/form_layouts.js') }}"></script>
 
     <!-- /core JS files -->
@@ -43,47 +44,63 @@
 {#    <script src="{{ asset('dc/dc.core.js') }}"></script>#}
     <!-- /theme JS files -->
 </head>
-<body class="navbar-top">
+<body>
+{{ include('@admin/menu/header.html.twig') }}
 
-    {{ include('@admin/menu/header.html.twig') }}
-    <!-- Page header -->
-    <div class="page-header">
-        <div class="page-header-content header-elements-md-inline">
-            <div class="page-title d-flex">
-                <h4>
 
-                    {% block header_title %}
-                    {% endblock %}
-                </h4>
-                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+
+
+<!-- Page content -->
+<div class="page-content">
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+
+        <!-- Page header -->
+        <div class="page-header page-header-light">
+            <div class="page-header-content header-elements-md-inline">
+                <div class="page-title d-flex">
+
+
+                    <h4><i class="icon-arrow-left52 mr-2"></i>
+                        {% block header_title %}
+                        {% endblock %}
+                    </h4>
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                </div>
             </div>
 
-            <div class="header-elements d-none py-0 mb-3 mb-md-0">
-                <div class="breadcrumb">
-                    <a href="../full/index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <a href="#" class="breadcrumb-item">Link</a>
-                    <span class="breadcrumb-item active">Current</span>
+            <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                <div class="d-flex">
+                    <div class="breadcrumb">
+                        <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                        <a href="#" class="breadcrumb-item">Link</a>
+                        <span class="breadcrumb-item active">Current</span>
+                    </div>
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /page header -->
+        <!-- /page header -->
 
 
-    <!-- Page content -->
-    <div class="page-content pt-0">
-        <div class="content-wrapper">
-            <div class="content pt-0">
-                <div class="card">
-                    {% block body %}
-                    {% endblock %}
-                </div>
-            </div>
+        <!-- Content area -->
+        <div class="content">
+            {% block body %}
+            {% endblock %}
         </div>
-    </div>
-    <!-- /page content -->
+        <!-- /content area -->
 
-    {{ include('@admin/menu/footer.html.twig') }}
+
+        <!-- Footer -->
+        {{ include('@admin/menu/footer.html.twig') }}
+        <!-- /footer -->
+
+    </div>
+    <!-- /main content -->
+
+</div>
+<!-- /page content -->
     {{ include('@admin/component/_flashes.html.twig') }}
     {% block javascript_bottom %}
     {% endblock %}

@@ -64,9 +64,9 @@ class EmailQueue
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_sent", type="boolean")
+     * @ORM\Column(name="is_sent", type="boolean" )
      */
-    private $is_sent;
+    private $is_sent = 0;
 
     /**
      * @var array

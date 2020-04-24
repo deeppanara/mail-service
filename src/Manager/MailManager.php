@@ -310,19 +310,20 @@ class MailManager
      */
     public function renderTwig($text, $vars)
     {
+
+//        dump(file_get_contents((new \ReflectionClass($template->unwrap()))->getFileName() ,FALSE));
+
         $env = new \Twig\Environment(new \Twig\Loader\ArrayLoader([]), [
             'debug' => false,
             'charset' => 'UTF-8',
             'strict_variables' => false,
             'autoescape' => 'html',
-            'cache' => __DIR__.'/../templates/cache',
+            'cache' => getCacheDir()."/mail/twig",
             'auto_reload' => null,
             'optimizations' => -1,
         ]);
-        $env->addExtension(new \Twig\Extension\DebugExtension());
         $template = $env->createTemplate($text);
-        $html = $template->render(array('name' => 'Bob'));
-
+        $html = $template->render($vars);
         return $html;
     }
 }
