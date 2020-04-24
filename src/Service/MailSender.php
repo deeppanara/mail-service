@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Manager\MailManager;
 use App\Repository\EmailGroupRepository;
+use App\Twig\ContentProvider;
 use Doctrine\ORM\Query;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -14,29 +15,25 @@ class MailSender
      * @var object|ContainerInterface
      */
     protected $container;
-
     /**
-     * @var EmailGroupRepository
+     * @var ContentProvider
      */
-    protected $emailGroupRepository;
+    protected $contentProvider;
+
 
     /**
      * Constructor.
      *
      * @param object $container
      */
-    public function __construct(ContainerInterface $container, EmailGroupRepository $emailGroupRepository, MailManager $mailManager)
+    public function __construct(MailManager $mailManager, ContentProvider $contentProvider)
     {
-        $this->container = $container;
-        $this->emailGroupRepository = $emailGroupRepository;
         $this->mailManager = $mailManager;
+        $this->contentProvider = $contentProvider;
     }
-    
-    public function sendByIentifier($identifier, $tags)
+
+    public function sendDirecMail($content, $tags)
     {
-        $this->mailManager->init();
-        $this->mailManager->setTo('recipient222@example.com');
-        $this->mailManager->render($identifier, $tags);
-        $this->mailManager->send();
+
     }
 }

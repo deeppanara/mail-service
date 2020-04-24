@@ -44,7 +44,6 @@ EOF
 
     }
 
-
     public function __construct(MailSender $mailSender, EmailTemplateRepository $emailTemplateRepository)
     {
         $this->mailSender = $mailSender;
@@ -61,7 +60,17 @@ EOF
 
         foreach ($emailTemps as $email) {
             echo ".";
-            $this->mailSender->sendByIentifier($email->getIdentifier(), []);
+
+            $this->mailManager->init();
+            $this->mailManager->setTo('recipient222@example.com');
+            $this->mailManager->setFrom("deep@aspl.sasas", "sasas");
+
+            $subject = $this->contentProvider->render($email->getSubject(), [$mailVars]);
+            $body = $this->contentProvider->render($email->getBodyHtml(), $mailVars);
+
+            $this->mailManager->setSubject($subject);
+            $this->mailManager->setBody($body);
+            $this->mailManager->send();
         }
 
         return 0;

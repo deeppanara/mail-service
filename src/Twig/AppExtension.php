@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig\Admin;
+namespace App\Twig;
 
 use App\Service\Resource;
 use Psr\Container\ContainerInterface;

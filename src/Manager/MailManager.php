@@ -67,9 +67,37 @@ class MailManager
     }
 
     /**
-     * Send mail.
+     * Get entity manager.
      *
-     * @throws Exception
+     * @return object
+     */
+    public function getEntityManager()
+    {
+        return $this->em;
+    }
+
+    /**
+     * Get mailer.
+     *
+     * @return object
+     */
+    public function getMailer()
+    {
+        return $this->mailer;
+    }
+
+    /**
+     * Get message.
+     *
+     * @return object
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Send mail.
      */
     public function init()
     {
@@ -79,8 +107,6 @@ class MailManager
 
     /**
      * Send mail.
-     *
-     * @throws Exception
      */
     public function send()
     {
@@ -169,25 +195,6 @@ class MailManager
         $this->getMessage()->setPriority($priority);
     }
 
-    /**
-     * Get mailer.
-     *
-     * @return object
-     */
-    public function getMailer()
-    {
-        return $this->mailer;
-    }
-
-    /**
-     * Get message.
-     *
-     * @return object
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
 
     /**
      * Set attachment.
@@ -239,91 +246,56 @@ class MailManager
         $this->getMessage()->setSubject($subject);
     }
 
-    /**
-     * Render mail.
-     *
-     * @param string $emailIdentifier
-     * @param string $mailVars
-     * @param string $locale
-     * @param string $to
-     *
-     * @throws Exception
-     */
-    public function render($emailIdentifier, $mailVars = [])
-    {
-        $emailTemplateLayoutHtml = '';
-        $emailTemplate = $this->getEmailTemplate($emailIdentifier);
-
-        if (!$this->getMessage()->getFrom()) {
-            $this->setFrom($emailTemplate->getSenderEmail(), $emailTemplate->getSenderName());
-        }
-        $emailTemplateLayoutHtml = $emailTemplate->getBodyHtml();
-
-        $subject = $this->renderTwig($emailTemplate->getSubject(), $mailVars);
-        $body = $this->renderTwig($emailTemplateLayoutHtml, $mailVars);
-
-        $this->setSubject($subject);
-        $this->setBody($body);
-
-    }
-
-    /**
-     * Get entity manager.
-     *
-     * @return object
-     */
-    public function getEntityManager()
-    {
-        return $this->em;
-    }
-
-    /**
-     * Get email template.
-     *
-     * @param string $emailIdentifier
-     * @param string $locale
-     *
-     * @throws \Exception
-     * @throws Exception
-     *
-     * @return string
-     */
-    public function getEmailTemplate($emailIdentifier)
-    {
-        $emailTemplate = $this->emailTemplateRepository->findOneByIdentifier($emailIdentifier);
-
-        if (!$emailTemplate) {
-            throw new \Exception('Email template not found');
-        }
-
-        return $emailTemplate;
-
-    }
-
-    /**
-     * Render twig.
-     *
-     * @param string $text
-     * @param string $vars
-     *
-     * @return string
-     */
-    public function renderTwig($text, $vars)
-    {
-
-//        dump(file_get_contents((new \ReflectionClass($template->unwrap()))->getFileName() ,FALSE));
-
-        $env = new \Twig\Environment(new \Twig\Loader\ArrayLoader([]), [
-            'debug' => false,
-            'charset' => 'UTF-8',
-            'strict_variables' => false,
-            'autoescape' => 'html',
-            'cache' => getCacheDir()."/mail/twig",
-            'auto_reload' => null,
-            'optimizations' => -1,
-        ]);
-        $template = $env->createTemplate($text);
-        $html = $template->render($vars);
-        return $html;
-    }
+//    /**
+//     * Render mail.
+//     *
+//     * @param string $emailIdentifier
+//     * @param string $mailVars
+//     * @param string $locale
+//     * @param string $to
+//     *
+//     * @throws Exception
+//     */
+//    public function render($emailIdentifier, $mailVars = [])
+//    {
+//        $emailTemplateLayoutHtml = '';
+//        $emailTemplate = $this->getEmailTemplate($emailIdentifier);
+//
+//        if (!$this->getMessage()->getFrom()) {
+//            $this->setFrom($emailTemplate->getSenderEmail(), $emailTemplate->getSenderName());
+//        }
+//        $emailTemplateLayoutHtml = $emailTemplate->getBodyHtml();
+//
+//        $subject = $this->renderTwig($emailTemplate->getSubject(), $mailVars);
+//        $body = $this->renderTwig($emailTemplateLayoutHtml, $mailVars);
+//
+//        $this->setSubject($subject);
+//        $this->setBody($body);
+//
+//    }
+//
+//
+//
+//    /**
+//     * Get email template.
+//     *
+//     * @param string $emailIdentifier
+//     * @param string $locale
+//     *
+//     * @throws \Exception
+//     * @throws Exception
+//     *
+//     * @return string
+//     */
+//    public function getEmailTemplate($emailIdentifier)
+//    {
+//        $emailTemplate = $this->emailTemplateRepository->findOneByIdentifier($emailIdentifier);
+//
+//        if (!$emailTemplate) {
+//            throw new \Exception('Email template not found');
+//        }
+//
+//        return $emailTemplate;
+//
+//    }
 }
