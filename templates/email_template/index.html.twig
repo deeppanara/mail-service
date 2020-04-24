@@ -9,30 +9,9 @@
 {% endblock header_elements %}
 
 {% block body %}
-    <div class="card-header header-elements-inline">
-        <h5 class="card-title">Search results</h5>
-        <div class="tables_length">
-            <label>
-                <span>Show:</span>
-                <select class="select2-hidden-accessible"  aria-hidden="true">
-                    <option value="25" {{ app.request.get('itemsPerPage') == 25 ? 'selected' : '' }} >25</option>
-                    <option value="50" {{ app.request.get('itemsPerPage') == 50 ? 'selected' : '' }}>50</option>
-                    <option value="75" {{ app.request.get('itemsPerPage') == 75 ? 'selected' : '' }}>75</option>
-                    <option value="100" {{ app.request.get('itemsPerPage') == 100 ? 'selected' : '' }}>100</option>
-                </select>
-            </label>
-
-            <div class="dt-buttons">
-                <div class="input-group-append">
-                    <button type="button" class="btn bg-slate dropdown-toggle btn-icon" data-toggle="dropdown">
-                        <i class="icon-menu7"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <table class="table table-bordered table-striped table-hover">
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr class="bg-slate">
                 <th class="text-center">Id</th>
@@ -82,5 +61,6 @@
 
         </tbody>
     </table>
-
+    </div>
+</div>
 {% endblock %}

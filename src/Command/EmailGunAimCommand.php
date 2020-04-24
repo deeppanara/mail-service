@@ -2,8 +2,10 @@
 
 namespace App\Command;
 
+use App\Manager\MailManager;
 use App\Repository\EmailTemplateRepository;
 use App\Service\MailSender;
+use App\Twig\ContentProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,6 +29,14 @@ class EmailGunAimCommand extends Command
      * @var EmailTemplateRepository
      */
     protected $emailTemplateRepository;
+    /**
+     * @var MailManager
+     */
+    protected $mailManager;
+    /**
+     * @var ContentProvider
+     */
+    protected $contentProvider;
 
     protected function configure()
     {
@@ -44,10 +54,12 @@ EOF
 
     }
 
-    public function __construct(MailSender $mailSender, EmailTemplateRepository $emailTemplateRepository)
+    public function __construct(MailSender $mailSender,MailManager $mailManager, EmailTemplateRepository $emailTemplateRepository, ContentProvider $contentProvider)
     {
         $this->mailSender = $mailSender;
+        $this->mailManager = $mailManager;
         $this->emailTemplateRepository = $emailTemplateRepository;
+        $this->contentProvider = $contentProvider;
 
         parent::__construct();
     }
@@ -65,8 +77,8 @@ EOF
             $this->mailManager->setTo('recipient222@example.com');
             $this->mailManager->setFrom("deep@aspl.sasas", "sasas");
 
-            $subject = $this->contentProvider->render($email->getSubject(), [$mailVars]);
-            $body = $this->contentProvider->render($email->getBodyHtml(), $mailVars);
+            $subject = $this->contentProvider->render($email->getSubject(), []);
+            $body = $this->contentProvider->render($email->getBodyHtml(), []);
 
             $this->mailManager->setSubject($subject);
             $this->mailManager->setBody($body);

@@ -19,26 +19,51 @@ class AppMailApiController extends AbstractController
     public function mailSend(Request $request, ApiRequestValidator $apiRequestValidator)
     {
 
-        $input = [
-            'name' => [
-                'last_name' => 'Potencier',
-            ],
-            'email' => 'test@email.tld',
-            'simple' => 'hello',
-            'eye_color' => 3,
-            'file' => null,
-            'password' => 'test',
-            'tags' => [
-                [
-                    'slug' => 'symfony_doc',
-                    'label' => 'symfony doc',
-                ],
-            ],
-        ];
+        $input = '
+{
+  "template_id": "85A198B56B2D08C01",
+  "from": {
+    "email": "noreplyjohndoe.com",
+    "name": "John Doe"
+  },
+  "reply_to": {
+    "email": "noreply@johndoe.com",
+    "name": "John Doe"
+  },
+  "personalizations": {
+      "to": [
+        {
+          "email": "john.doeexample.com",
+          "name": "John Doe"
+        }
+      ],
+      "cc": [
+        {
+          "email": "john.doe@example.com",
+          "name": "John Doe"
+        }
+      ],
+      "bcc": [
+        {
+          "email": "john.doe@example.com",
+          "name": "John Doe"
+        }
+      ],
+      "custom_tags": {
+        "verb": "",
+        "adjective": "",
+        "noun": "",
+        "currentDayofWeek":     ""
+      },
+      "send_at": "-12323232323",
+      "subject": "Hello, World!"
+    }
+}';
 
         // use the validator to validate the value
-        $errors = $apiRequestValidator->validate($input);
-        if (count($errors)) {
+        $errors = $apiRequestValidator->validate(json_decode($input, true));
+
+        if ($errors) {
             return new JsonResponse($apiRequestValidator->getFormatedError());
         }
         dd($apiRequestValidator->getFormatedError());
