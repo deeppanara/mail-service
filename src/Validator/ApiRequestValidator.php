@@ -147,6 +147,7 @@ class ApiRequestValidator
 
     private function formateErrors()
     {
+        $formatedError['status'] = $this->errors->count() ? 'fail' : 'pass';
         $formatedError['data'] = $this->data;
         if ($this->errors->count()) {
             $serializer = new Serializer(array(new ObjectNormalizer()));
@@ -164,11 +165,9 @@ class ApiRequestValidator
 
             }
 
-            dd($formatedError);
+            $formatedError['errors'] = $errorArray ?? [];
         }
-        $formatedError['status'] = $this->errors->count() ? 'fail' : 'pass';
-        $formatedError['errors'] = $errorArray ?? [];
-dd($formatedError);
+
         return $formatedError;
     }
 

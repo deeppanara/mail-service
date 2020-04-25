@@ -16,6 +16,17 @@ if (! function_exists('request')) {
         return \App\Kernel::getContainerStatic()->get('request_stack')->getCurrentRequest();
     }
 }
+if (! function_exists('EntityManager')) {
+
+    /**
+     * @return Doctrine\ORM\EntityManager
+     */
+    function EntityManager()
+    {
+        return app('doctrine.orm.entity_manager');
+
+    }
+}
 if (! function_exists('getCacheDir')) {
     function getCacheDir()
     {
