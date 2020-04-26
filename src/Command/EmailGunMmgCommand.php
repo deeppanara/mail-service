@@ -9,14 +9,11 @@ use App\Repository\EmailTemplateRepository;
 use App\Service\MailSenderService;
 use App\Validator\ApiRequestValidator;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Messenger\Stamp\DelayStamp;
 
 class EmailGunMmgCommand extends Command
 {
@@ -26,8 +23,8 @@ class EmailGunMmgCommand extends Command
     protected $mailManager;
     protected $contentProvider;
     protected $apiRequestValidator;
-    private $bus;
-    private $mailSenderService;
+    protected $bus;
+    protected $mailSenderService;
 
     protected function configure()
     {
@@ -94,7 +91,7 @@ EOF
     protected function fireSingleMail(): void
     {
         $reqData = [
-            "template_id" => "60AAFB00E42FA3D6",
+            "template_id" => "37DB48BED534A661",
             "from" => [
                 "email" => "norepl@yjohndoe.com",
                 "name" => "John Doe"
@@ -128,18 +125,18 @@ EOF
                     "noun" => "",
                     "currentDayofWeek" => "",
                 ],
-                "send_at" => time() + rand(-10, 20),
+                "send_at" => time() + rand(-10, 5),
                 "subject" => "Hello, World!"
             ],
         ];
 
-        $errors = $this->apiRequestValidator->validate($reqData);
-
-        if ($errors) {
-            var_dump($this->apiRequestValidator->getFormatedError());
-        } else {
+//        $errors = $this->apiRequestValidator->validate($reqData);
+//
+//        if ($errors) {
+//            var_dump($this->apiRequestValidator->getFormatedError());
+//        } else {
             $queueObj = $this->mailSenderService->processRequest($reqData);
-        }
+//        }
 
         $mailqueue = new MailQueue($queueObj);
         $this->bus->dispatch($mailqueue);

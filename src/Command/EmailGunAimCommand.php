@@ -83,6 +83,7 @@ EOF
             $this->mailManager->setSubject($subject);
             $this->mailManager->setBody($body);
             $this->mailManager->send();
+
         }
 
         return 0;

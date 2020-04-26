@@ -3,7 +3,6 @@
 namespace App\Manager;
 
 use App\Repository\EmailTemplateRepository;
-use http\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -111,7 +110,8 @@ class MailManager
     public function send()
     {
         if ($this->getMessage()) {
-            $this->getMailer()->send($this->getMessage());
+            $stat = $this->getMailer()->send($this->getMessage());
+            dd($stat);
             $this->message = null;
         } else {
             throw new \RuntimeException("Swift_Message is set properly Or already used.");

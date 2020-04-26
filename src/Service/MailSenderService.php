@@ -28,7 +28,6 @@ class MailSenderService
      */
     protected $mailManager;
 
-
     /**
      * Constructor.
      *
@@ -74,12 +73,16 @@ class MailSenderService
 
     public function sendMailFromQueue(EmailQueue $mailQueue)
     {
-        $this->mailManager->init();
-        $this->mailManager->setTo('recipient222@example.com');
-        $this->mailManager->setFrom("deep@aspl.sasas", "sasas");
-        $this->mailManager->setSubject($mailQueue->getSubject());
-        $this->mailManager->setBody($mailQueue->getContent());
-        $this->mailManager->send();
+        try {
+            $this->mailManager->init();
+            $this->mailManager->setTo('recipient222@example.com');
+            $this->mailManager->setFrom('deep@example.com');
+            $this->mailManager->setSubject('ffffffff');
+            $this->mailManager->setBody('jjjjjjjjjjjjjjjj');
+            $this->mailManager->send();
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
     }
 
 }
