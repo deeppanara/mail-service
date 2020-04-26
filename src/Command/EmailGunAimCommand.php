@@ -3,9 +3,9 @@
 namespace App\Command;
 
 use App\Manager\MailManager;
+use App\Provider\ContentProvider;
 use App\Repository\EmailTemplateRepository;
-use App\Service\MailSender;
-use App\Twig\ContentProvider;
+use App\Service\MailSenderService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,7 +22,7 @@ class EmailGunAimCommand extends Command
      */
     protected $io;
     /**
-     * @var MailSender
+     * @var MailSenderService
      */
     protected $mailSender;
     /**
@@ -54,7 +54,7 @@ EOF
 
     }
 
-    public function __construct(MailSender $mailSender,MailManager $mailManager, EmailTemplateRepository $emailTemplateRepository, ContentProvider $contentProvider)
+    public function __construct(MailSenderService $mailSender, MailManager $mailManager, EmailTemplateRepository $emailTemplateRepository, ContentProvider $contentProvider)
     {
         $this->mailSender = $mailSender;
         $this->mailManager = $mailManager;

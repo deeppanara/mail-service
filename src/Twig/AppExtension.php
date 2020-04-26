@@ -2,7 +2,7 @@
 
 namespace App\Twig;
 
-use App\Service\Resource;
+use App\Provider\ResourceProvider;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -17,18 +17,15 @@ class AppExtension extends AbstractExtension
     private $kernel;
     private $requestStack;
     private $router;
-    /**
-     * @var Resource
-     */
-    private $resource;
+    private $resourceProvider;
 
-    public function __construct(ContainerInterface $container, KernelInterface $kernel, RequestStack $requestStack, RouterInterface $router, Resource $resource)
+    public function __construct(ContainerInterface $container, KernelInterface $kernel, RequestStack $requestStack, RouterInterface $router, ResourceProvider $resourceProvider)
     {
         $this->container = $container;
         $this->kernel = $kernel;
         $this->requestStack = $requestStack;
         $this->router = $router;
-        $this->resource = $resource;
+        $this->resourceProvider = $resourceProvider;
     }
 
     public function getFunctions(): array
@@ -64,6 +61,6 @@ class AppExtension extends AbstractExtension
      */
     public function gitGroups()
     {
-        return $this->resource->getGropListForSidebar();
+        return $this->resourceProvider->getGropListForSidebar();
     }
 }

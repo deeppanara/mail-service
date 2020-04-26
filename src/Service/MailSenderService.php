@@ -4,12 +4,12 @@ namespace App\Service;
 
 use App\Entity\EmailQueue;
 use App\Manager\MailManager;
-use App\Repository\EmailGroupRepository;
+use App\Provider\ContentProvider;
 use App\Repository\EmailQueueRepository;
 use App\Repository\EmailTemplateRepository;
-use App\Twig\ContentProvider;
 
-class MailSender
+
+class MailSenderService
 {
     /**
      * @var ContentProvider
@@ -68,5 +68,18 @@ class MailSender
 
         EntityManager()->persist($queue);
         EntityManager()->flush();
+
+        return $queue;
     }
+
+    public function sendMailFromQueue(EmailQueue $mailQueue)
+    {
+        $this->mailManager->init();
+        $this->mailManager->setTo('recipient222@example.com');
+        $this->mailManager->setFrom("deep@aspl.sasas", "sasas");
+        $this->mailManager->setSubject($mailQueue->getSubject());
+        $this->mailManager->setBody($mailQueue->getContent());
+        $this->mailManager->send();
+    }
+
 }

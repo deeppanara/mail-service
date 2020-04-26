@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace App\Provider;
 
 
 class ContentProvider

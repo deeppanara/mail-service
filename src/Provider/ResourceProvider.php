@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Service;
+namespace App\Provider;
 
 use App\Repository\EmailGroupRepository;
 use Doctrine\ORM\Query;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class Resource
+class ResourceProvider
 {
     /**
      * @var EmailGroupRepository
