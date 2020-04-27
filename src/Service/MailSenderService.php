@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\EmailLog;
 use App\Entity\EmailQueue;
 use App\Manager\MailManager;
 use App\Provider\ContentProvider;
@@ -69,6 +70,28 @@ class MailSenderService
         EntityManager()->flush();
 
         return $queue;
+    }
+
+    public function moveMessageToLog(EmailQueue $mailQueue)
+    {
+        $queue = new EmailLog();
+        $queue->setQueueId($mailQueue->getId());
+        $queue->setIsSent(true);
+        $queue->setTemplateId($mailQueue->getTemplateId());
+        $queue->setMailFrom($mailQueue->getMailFrom());
+        $queue->setReplyTo($mailQueue->getReplyTo());
+        $queue->setMailTo($mailQueue->getMailTo());
+        $queue->setCc($mailQueue->getCc());
+        $queue->setBcc($mailQueue->getBcc());
+        $queue->setSubject($mailQueue->getSubject());
+        $queue->setContent($mailQueue->getContent());
+        $queue->setCustomTags($mailQueue->getCustomTags());
+        $queue->setExpectedSentTime($mailQueue->getSendAt());
+        $queue->setRealSentAt(time());
+
+        EntityManager()->persist($queue);
+        EntityManager()->flush();
+
     }
 
     public function sendMailFromQueue(EmailQueue $mailQueue)

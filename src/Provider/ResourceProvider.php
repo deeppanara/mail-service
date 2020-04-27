@@ -23,7 +23,10 @@ class ResourceProvider
      *
      * @param object $container
      */
-    public function __construct(ContainerInterface $container, EmailGroupRepository $emailGroupRepository)
+    public function __construct(
+        ContainerInterface $container,
+        EmailGroupRepository $emailGroupRepository
+    )
     {
         $this->container = $container;
         $this->emailGroupRepository = $emailGroupRepository;

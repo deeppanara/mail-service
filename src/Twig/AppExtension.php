@@ -3,12 +3,14 @@
 namespace App\Twig;
 
 use App\Provider\ResourceProvider;
+use Carbon\Carbon;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
+use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
@@ -36,6 +38,17 @@ class AppExtension extends AbstractExtension
             new TwigFunction('groups_list', [$this, 'gitGroups']),
 //            new TwigFunction('configration', [$this, 'getConfigration']),
         ];
+    }
+    public function getFilters()
+    {
+        return [
+            new TwigFilter('time_diff', [$this, 'timeDiffFilter']),
+        ];
+    }
+
+    public function timeDiffFilter($timestemp)
+    {
+        return Carbon::createFromTimestamp($timestemp)->diffForHumans();
     }
 
     public function getAssetPath(string $path): string

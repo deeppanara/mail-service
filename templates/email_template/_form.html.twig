@@ -79,7 +79,13 @@
             </div>
 
             <div class="tab-pane fade" id="vertical-left-template">
-
+                <form action="#">
+                    <div class="mb-3">
+                        <textarea name="editor-full" id="editor-full" rows="4" cols="4">
+                            {{ email_template.bodyHtml }}
+                        </textarea>
+                    </div>
+                </form>
             </div>
 
             <div class="tab-pane fade" id="vertical-left-tags">

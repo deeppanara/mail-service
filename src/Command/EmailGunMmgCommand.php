@@ -91,7 +91,7 @@ EOF
     protected function fireSingleMail(): void
     {
         $reqData = [
-            "template_id" => "37DB48BED534A661",
+            "template_id" => "60AAFB00E42FA3D6",
             "from" => [
                 "email" => "norepl@yjohndoe.com",
                 "name" => "John Doe"

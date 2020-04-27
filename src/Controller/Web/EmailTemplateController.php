@@ -5,6 +5,7 @@ namespace App\Controller\Web;
 use App\Entity\EmailTemplate;
 use App\Form\EmailTemplateType;
 use App\Manager\MailManager;
+use App\Repository\EmailLogRepository;
 use App\Repository\EmailTemplateRepository;
 use ReflectionClass;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,10 +54,13 @@ class EmailTemplateController extends AbstractController
     /**
      * @Route("/{id}", name="email_template_show", methods={"GET"})
      */
-    public function show(EmailTemplate $emailTemplate): Response
+    public function show(EmailTemplate $emailTemplate, EmailLogRepository $emailLogRepository): Response
     {
+        $emailLog = $emailLogRepository->findBy(['template_id' => $emailTemplate->getIdentifier()], ['id' => 'DESC']);
+
         return $this->render('email_template/show.html.twig', [
             'email_template' => $emailTemplate,
+            'email_log' => $emailLog
         ]);
     }
 

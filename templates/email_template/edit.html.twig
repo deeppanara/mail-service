@@ -5,6 +5,11 @@
     Edit EmailTemplate #{{ email_template.id }}
 {% endblock %}
 
+{% block javascript %}
+    <script src="{{ asset('global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+
+
 {% block body %}
     {{ include('email_template/_form.html.twig', {'button_label': 'Update'}) }}
 

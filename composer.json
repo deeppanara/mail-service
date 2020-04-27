@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "jwage/easy-csv": "^1.0",
+        "nesbot/carbon": "^2.32",
         "sensio/framework-extra-bundle": "^5.1",
         "swiftmailer/swiftmailer": "^6.0",
         "symfony/asset": "5.0.*",

@@ -50,6 +50,13 @@ class EmailLog
     /**
      * @var string
      *
+     * @ORM\Column(name="queue_id", type="integer")
+     */
+    private $queue_id;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="subject", type="string", nullable=true)
      */
     private $subject;
@@ -78,7 +85,7 @@ class EmailLog
     /**
      * @var array
      *
-     * @ORM\Column(name="error", type="json")
+     * @ORM\Column(name="error", type="json", nullable=true)
      */
     private $error;
 
@@ -148,14 +155,14 @@ class EmailLog
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
     /**
      * @param int $id
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setId(int $id)
     {
@@ -174,7 +181,7 @@ class EmailLog
 
     /**
      * @param array $mailTo
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setMailTo($mailTo)
     {
@@ -183,38 +190,6 @@ class EmailLog
         return $this;
     }
 
-    /**
-     * @return integer
-     */
-    public function getSendAt()
-    {
-        return $this->send_at;
-    }
-
-    /**
-     * @param integer $send_at
-     *
-     * @return EmailQueue
-     *
-     */
-    public function setSendAt($send_at)
-    {
-        $this->send_at = $send_at ?? time();
-
-        return $this;
-    }
-
-    /**
-     * Set created at value.
-     *
-     * @ORM\PrePersist()
-     */
-    public function setSendAtValue()
-    {
-        if (null == $this->send_at){
-            $this->send_at = time();
-        }
-    }
 
     /**
      * @return string
@@ -226,7 +201,7 @@ class EmailLog
 
     /**
      * @param string $subject
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setSubject($subject)
     {
@@ -245,7 +220,7 @@ class EmailLog
 
     /**
      * @param array $cc
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setCc($cc)
     {
@@ -264,7 +239,7 @@ class EmailLog
 
     /**
      * @param array $bcc
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setBcc($bcc)
     {
@@ -283,7 +258,7 @@ class EmailLog
 
     /**
      * @param array $from
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setMailFrom($from)
     {
@@ -302,7 +277,7 @@ class EmailLog
 
     /**
      * @param array $reply_to
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setReplyTo($reply_to)
     {
@@ -321,7 +296,7 @@ class EmailLog
 
     /**
      * @param array $attachments
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setAttachments($attachments)
     {
@@ -340,7 +315,7 @@ class EmailLog
 
     /**
      * @param array $headers
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setHeaders($headers)
     {
@@ -359,7 +334,7 @@ class EmailLog
 
     /**
      * @param array $custom_tags
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setCustomTags($custom_tags)
     {
@@ -378,7 +353,7 @@ class EmailLog
 
     /**
      * @param string $template_id
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setTemplateId($template_id)
     {
@@ -397,7 +372,7 @@ class EmailLog
 
     /**
      * @param bool $is_sent
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setIsSent($is_sent)
     {
@@ -416,13 +391,77 @@ class EmailLog
 
     /**
      * @param string $content
-     * @return EmailQueue
+     * @return EmailLog
      */
     public function setContent($content)
     {
         $this->content = $content;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getExpectedSentTime()
+    {
+        return $this->expected_sent_time;
+    }
+
+    /**
+     * @param int $expected_sent_time
+     */
+    public function setExpectedSentTime($expected_sent_time)
+    {
+        $this->expected_sent_time = $expected_sent_time;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRealSentAt()
+    {
+        return $this->real_sent_at;
+    }
+
+    /**
+     * @param int $real_sent_at
+     */
+    public function setRealSentAt($real_sent_at)
+    {
+        $this->real_sent_at = $real_sent_at;
+    }
+
+    /**
+     * @return array
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @param array $error
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQueueId()
+    {
+        return $this->queue_id;
+    }
+
+    /**
+     * @param string $queue_id
+     */
+    public function setQueueId($queue_id)
+    {
+        $this->queue_id = $queue_id;
     }
 
 

@@ -111,7 +111,6 @@ class MailManager
     {
         if ($this->getMessage()) {
             $stat = $this->getMailer()->send($this->getMessage());
-            dd($stat);
             $this->message = null;
         } else {
             throw new \RuntimeException("Swift_Message is set properly Or already used.");
