@@ -108,7 +108,7 @@ class EmailTemplate
     /**
      * @var bool
      *
-     * @ORM\Column(name="status", type="smallint", nullable=true, options={"default" = 1})
+     * @ORM\Column(name="status", type="boolean", nullable=true)
      */
     private $status;
 

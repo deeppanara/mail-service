@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "fzaninotto/faker": "^1.9",
         "jwage/easy-csv": "^1.0",
         "nesbot/carbon": "^2.32",
         "sensio/framework-extra-bundle": "^5.1",

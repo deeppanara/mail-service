@@ -1,4 +1,4 @@
-{#{{ form_start(form) }}#}
+{{ form_start(form) }}
 {#    {{ form_widget(form) }}#}
 <div class="card">
     <div class="card-body">
@@ -27,25 +27,25 @@
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Enter Name:</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                                {{ form_widget(form.name, {'attr': {}}) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Subject:</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                                {{ form_widget(form.subject, {'attr': {}}) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Sender's Email Address:</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                                {{ form_widget(form.sender_email, {'attr': {}}) }}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-2 col-form-label">Sender's Name:</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                                {{ form_widget(form.sender_name, {'attr': {}}) }}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,7 +53,7 @@
                             <div class="col-lg-10">
                                 <div class="form-check form-check-switch form-check-switch-left">
                                     <label class="form-check-label d-flex align-items-center">
-                                        <input type="checkbox" data-on-color="primary" data-off-color="default" data-on-text="Active" data-off-text="Inactive" class="form-check-input-switch" >
+                                        {{ form_widget(form.status, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Active', 'data-off-text': 'Inactive', 'class': 'form-check-input-switch' }}) }}
                                     </label>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="col-lg-10">
                                 <div class="form-check form-check-switch form-check-switch-left">
                                     <label class="form-check-label d-flex align-items-center">
-                                        <input type="checkbox" data-on-color="primary" data-off-color="default" data-on-text="Yes" data-off-text="No" class="form-check-input-switch" >
+                                        {{ form_widget(form.has_layout, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Yes', 'data-off-text': 'No', 'class': 'form-check-input-switch' }}) }}
                                     </label>
                                 </div>
                             </div>
@@ -79,43 +79,20 @@
             </div>
 
             <div class="tab-pane fade" id="vertical-left-template">
-                <form action="#">
                     <div class="mb-3">
-                        <textarea name="editor-full" id="editor-full" rows="4" cols="4">
-                            {{ email_template.bodyHtml }}
-                        </textarea>
+                        {{ form_widget(form.body_html, {'attr': {}}) }}
+{#                        <textarea name="editor-full" id="editor-full" rows="4" cols="4">#}
+{#                            {{ email_template.bodyHtml }}#}
+{#                        </textarea>#}
                     </div>
-                </form>
             </div>
 
             <div class="tab-pane fade" id="vertical-left-tags">
-{#                <div class="row">#}
-{#                    {% for tag in email_template.tags %}#}
-{#                        <div class="col-md-3">#}
-{#                            <div class="card">#}
-{#                                <div class="card-header bg-light d-flex justify-content-between">#}
-{#                                    <span class="font-size-sm text-uppercase font-weight-semibold">{{ tag.code }}</span>#}
-{#                                </div>#}
-{#                                <div class="card-body">#}
-{#                                    {% if tag.decreption is not null %}#}
-{#                                        {{ tag.decreption }}#}
-{#                                    {% else %}#}
-{#                                        <p class="text-muted">Decreption Not Avalable.</p>#}
-{#                                    {% endif %}#}
-{#                                </div>#}
-{#                                <div class="card-footer bg-light d-flex justify-content-between">#}
-{#                                    <ul class="list-inline mb-0">#}
-{#                                        <li class="list-inline-item"><a class="text-warning" href="#">Remove From This Email </a></li>#}
-{#                                    </ul>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
+
             </div>
 
         </div>
     </div>
 </div>
 </div>
-{#{{ form_end(form) }}#}
+{{ form_end(form) }}

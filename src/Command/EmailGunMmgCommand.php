@@ -90,8 +90,12 @@ EOF
      */
     protected function fireSingleMail(): void
     {
+        $emailTemps = $this->emailTemplateRepository->findAll();
+        $emilGroup = $emailTemps[array_rand($emailTemps)];
+
+        dump($emilGroup->getIdentifier());
         $reqData = [
-            "template_id" => "60AAFB00E42FA3D6",
+            "template_id" => $emilGroup->getIdentifier(),
             "from" => [
                 "email" => "norepl@yjohndoe.com",
                 "name" => "John Doe"
@@ -125,7 +129,6 @@ EOF
                     "noun" => "",
                     "currentDayofWeek" => "",
                 ],
-                "send_at" => time() + rand(-10, 5),
                 "subject" => "Hello, World!"
             ],
         ];

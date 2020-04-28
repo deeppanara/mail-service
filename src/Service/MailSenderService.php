@@ -64,7 +64,7 @@ class MailSenderService
         $queue->setSubject($subject);
         $queue->setContent($message);
         $queue->setCustomTags($request['personalizations']['custom_tags'] ?? []);
-        $queue->setSendAt($request['personalizations']['send_at']);
+        $queue->setSendAt($request['personalizations']['send_at'] ?? time());
 
         EntityManager()->persist($queue);
         EntityManager()->flush();

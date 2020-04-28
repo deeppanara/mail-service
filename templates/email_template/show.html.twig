@@ -95,48 +95,6 @@
                         </div>
                     </div>
 
-                    <!-- Single line -->
-                    <div class="card">
-                        <div class="card-header bg-transparent header-elements-inline">
-                            <h6 class="card-title">My Inbox (single line)</h6>
-
-                            <div class="header-elements">
-                                <span class="badge bg-blue">259 new today</span>
-                            </div>
-                        </div>
-
-                        <!-- Table -->
-                        <div class="table-responsive">
-                            <table class="table table-inbox">
-                                <tbody data-link="row" class="rowlink">
-
-                                {% for email in email_log %}
-                                    <tr class="unread">
-                                        <td class="table-inbox-image">
-                                            <span class="btn bg-warning-400 rounded-circle btn-icon btn-sm">
-                                                <span class="letter-icon">{{ email.MailTo.0.name|slice(0, 1)|lower }}</span>
-                                            </span>
-                                        </td>
-                                        <td class="table-inbox-name">
-                                            <div class="letter-icon-title text-default">{{ email.MailTo.0.name }}</div>
-                                        </td>
-                                        <td class="table-inbox-message">
-                                            <span class="table-inbox-subject"><span class="badge bg-success mr-2">Promo</span>{{email.subject }} &nbsp;-&nbsp;</span>
-                                            <span class="text-muted font-weight-normal">And one of the boats (presumed to contain the missing leg in all its original integrity) is being crunched by the jaws of the foremost whale</span>
-                                        </td>
-                                        <td class="table-inbox-time">
-                                            {{email.RealSentAt|time_diff }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /table -->
-
-                    </div>
-                    <!-- /single line -->
-
                 </div>
 
                 <div class="tab-pane fade" id="vertical-left-fields">
