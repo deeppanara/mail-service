@@ -20,7 +20,10 @@ final class MoveToLogMessageHandler implements MessageHandlerInterface
      */
     private $eventBus;
 
-    public function __construct(MessageBusInterface $eventBus, MailSenderService $mailSenderService)
+    public function __construct(
+        MessageBusInterface $eventBus,
+        MailSenderService $mailSenderService
+    )
     {
         $this->mailSenderService = $mailSenderService;
         $this->eventBus = $eventBus;

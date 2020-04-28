@@ -2,6 +2,7 @@
 
 namespace App\MessageHandler;
 
+use App\Manager\MailManager;
 use App\Message\MailQueue;
 use App\Message\MoveToLogMessage;
 use App\Service\MailSenderService;
@@ -21,11 +22,26 @@ final class MailQueueHandler implements MessageHandlerInterface
      * @var MessageBusInterface
      */
     private $eventBus;
+    /**
+     * @var MailManager
+     */
+    public $mailManager;
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
 
-    public function __construct(MessageBusInterface $eventBus, MailSenderService $mailSenderService)
+    public function __construct(
+        MessageBusInterface $eventBus,
+        MailSenderService $mailSenderService,
+        MailManager $mailManager,
+        \Swift_Mailer $mailer
+    )
     {
         $this->mailSenderService = $mailSenderService;
         $this->eventBus = $eventBus;
+        $this->mailManager = $mailManager;
+        $this->mailer = $mailer;
     }
 
     public function __invoke(MailQueue $message)

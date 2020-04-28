@@ -271,21 +271,21 @@ $bodyHtml[] = <<<EOD
                                                     <td class="quick-links" valign="top">
                                                         <h3 class="footer-title">Quick links</h3>
                                                         <div class="links-column">
-                                                            {% if quick_links is defined and quick_links|length %}
-                                                                {% for quickLink in quick_links %}
-                                                                    <a href="{{ quickLink['source_url'] }}">{{ quickLink['name'] }}</a>
-                                                                {% endfor %}
-                                                            {% endif %}
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
                                                         </div>
                                                     </td>
                                                     <td class="about-us" valign="top">
                                                         <h3 class="footer-title">About us</h3>
                                                         <div class="links-column">
-                                                            {% if static_pages is defined and static_pages|length %}
-                                                                {% for staticPage in static_pages %}
-                                                                    <a href="{{ staticPage['url'] }}">{{ staticPage['title'] }}</a>
-                                                                {% endfor %}
-                                                            {% endif %}
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
+                                                            <a href="url">title</a>
                                                         </div>
                                                     </td>
                                                     <td class="follow-us" valign="top">

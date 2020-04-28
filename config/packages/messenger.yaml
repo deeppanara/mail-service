@@ -7,23 +7,24 @@ framework:
                 middleware:
                     - App\Middleware\CustomMiddleware
 
-        transports:
-            async_priority_high:
-                # https://symfony.com/doc/current/messenger.html#transport-configuration
-                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
-                # failed: 'doctrine://default?queue_name=failed'
-                # sync: 'sync://'
+#        transports:
+#            async_priority_high:
+#                # https://symfony.com/doc/current/messenger.html#transport-configuration
+#                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+#                # failed: 'doctrine://default?queue_name=failed'
+#                # sync: 'sync://'
+#
+#                retry_strategy:
+#                    max_retries: 3
+#                    # milliseconds delay
+#                    delay: 2000
+#                    # causes the delay to be higher before each retry
+#                    # e.g. 1 second delay, 2 seconds, 4 seconds
+#                    multiplier: 2
+#                    max_delay: 0
+#
+#        routing:
+#            # Route your messages to the transports
+#             'App\Message\MailQueue': async_priority_high
+##             'App\Message\MoveToLogMessage': async_priority_high
 
-                retry_strategy:
-                    max_retries: 3
-                    # milliseconds delay
-                    delay: 2000
-                    # causes the delay to be higher before each retry
-                    # e.g. 1 second delay, 2 seconds, 4 seconds
-                    multiplier: 2
-                    max_delay: 0
-
-        routing:
-            # Route your messages to the transports
-             'App\Message\MailQueue': async_priority_high
-             'App\Message\MoveToLogMessage': async_priority_high

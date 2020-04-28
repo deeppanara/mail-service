@@ -130,6 +130,18 @@ class MailManager
     }
 
     /**
+     * Set to.
+     *
+     * @param string $addresses
+     * @param string $name
+     */
+    public function setToArray(array $addresses)
+    {
+        foreach ($addresses as $address) {
+            $this->getMessage()->addTo($address['email'], $address['name']);
+        }
+    }
+    /**
      * Set from.
      *
      * @param string $addresses
@@ -138,6 +150,17 @@ class MailManager
     public function setFrom($addresses, $name = null)
     {
         $this->getMessage()->setFrom($addresses, $name);
+    }
+
+    /**
+     * Set from.
+     *
+     * @param string $addresses
+     * @param string $name
+     */
+    public function setFromArray(array $address)
+    {
+        $this->getMessage()->setFrom($address['email'], $address['name']);
     }
 
     /**
@@ -152,6 +175,19 @@ class MailManager
     }
 
     /**
+     * Set to.
+     *
+     * @param string $addresses
+     * @param string $name
+     */
+    public function setCcArray(array $addresses)
+    {
+        foreach ($addresses as $address) {
+            $this->getMessage()->addCc($address['email'], $address['name']);
+        }
+    }
+
+    /**
      * Set bcc.
      *
      * @param string $addresses
@@ -160,6 +196,19 @@ class MailManager
     public function setBcc($addresses, $name = null)
     {
         $this->getMessage()->setBcc($addresses, $name);
+    }
+
+    /**
+     * Set to.
+     *
+     * @param string $addresses
+     * @param string $name
+     */
+    public function setBccArray(array $addresses)
+    {
+        foreach ($addresses as $address) {
+            $this->getMessage()->addBcc($address['email'], $address['name']);
+        }
     }
 
     /**

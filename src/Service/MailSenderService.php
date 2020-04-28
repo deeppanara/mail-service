@@ -49,11 +49,14 @@ class MailSenderService
 
     public function processRequest($request)
     {
-
-        $subject = $this->contentProvider->render($request['personalizations']['subject'], $request['personalizations']['custom_tags'] ?? []);
         $messageObj = $this->emailTemplateRepository->findOneBy(['identifier' => $request['template_id']]);
-        $message = $this->contentProvider->render($messageObj->getBodyHtml(), $request['personalizations']['custom_tags'] ?? []);
+        if (isset($request['personalizations']['subject'])) {
+            $subject = $this->contentProvider->render($request['personalizations']['subject'], $request['personalizations']['custom_tags'] ?? []);
+        } else {
+            $subject = $this->contentProvider->render($messageObj->getSubject(), $request['personalizations']['custom_tags'] ?? []);
+        }
 
+        $message = $this->contentProvider->render($messageObj->getBodyHtml(), $request['personalizations']['custom_tags'] ?? []);
         $queue = new EmailQueue();
         $queue->setTemplateId($request['template_id']);
         $queue->setMailFrom($request['from']);
@@ -96,12 +99,13 @@ class MailSenderService
 
     public function sendMailFromQueue(EmailQueue $mailQueue)
     {
+
         try {
             $this->mailManager->init();
-            $this->mailManager->setTo('recipient222@example.com');
-            $this->mailManager->setFrom('deep@example.com');
-            $this->mailManager->setSubject('ffffffff');
-            $this->mailManager->setBody('jjjjjjjjjjjjjjjj');
+            $this->mailManager->setToArray($mailQueue->getMailTo());
+            $this->mailManager->setFromArray($mailQueue->getMailFrom());
+            $this->mailManager->setSubject($mailQueue->getSubject());
+            $this->mailManager->setBody($mailQueue->getContent());
             $this->mailManager->send();
         } catch (\Exception $exception) {
             dd($exception);

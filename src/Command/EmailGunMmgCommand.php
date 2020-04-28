@@ -92,35 +92,43 @@ EOF
     {
         $emailTemps = $this->emailTemplateRepository->findAll();
         $emilGroup = $emailTemps[array_rand($emailTemps)];
-
+        $faker = \Faker\Factory::create();
         dump($emilGroup->getIdentifier());
         $reqData = [
             "template_id" => $emilGroup->getIdentifier(),
             "from" => [
-                "email" => "norepl@yjohndoe.com",
-                "name" => "John Doe"
+                "email" => $faker->email,
+                "name" => $faker->name
             ],
             "reply_to" => [
-                "email" => "noreply@johndoe.com",
-                "name" => "John Doe"
+                "email" => $faker->email,
+                "name" => $faker->name
             ],
             "personalizations" => [
                 "to" => [
                     [
-                        "email" => "john.doe@example.com",
-                        "name" => "John Doe"
+                        "email" => $faker->email,
+                        "name" => $faker->name
+                    ],
+                    [
+                        "email" => $faker->email,
+                        "name" => $faker->name
+                    ],
+                    [
+                        "email" => $faker->email,
+                        "name" => $faker->name
                     ]
                 ],
                 "cc" => [
                     [
-                        "email" => "john.doe@example.com",
-                        "name" => "John Doe"
+                        "email" => $faker->email,
+                        "name" => $faker->name
                     ],
                 ],
                 "bcc" => [
                     [
-                        "email" => "john.doe@example.com",
-                        "name" => "John Doe"
+                        "email" => $faker->email,
+                        "name" => $faker->name
                     ],
                 ],
                 "custom_tags" => [
@@ -128,8 +136,7 @@ EOF
                     "adjective" => "",
                     "noun" => "",
                     "currentDayofWeek" => "",
-                ],
-                "subject" => "Hello, World!"
+                ]
             ],
         ];
 
