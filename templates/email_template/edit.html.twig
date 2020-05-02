@@ -9,11 +9,6 @@
     <script src="{{ asset('global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
 {% endblock %}
 
-
 {% block body %}
     {{ include('email_template/_form.html.twig', {'button_label': 'Update'}) }}
-
-{#    <a href="{{ path('email_template_index') }}">back to list</a>#}
-
-{#    {{ include('email_template/_delete_form.html.twig') }}#}
 {% endblock %}

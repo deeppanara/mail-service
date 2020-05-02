@@ -1,98 +1,89 @@
 {{ form_start(form) }}
-{#    {{ form_widget(form) }}#}
 <div class="card">
     <div class="card-body">
-    <div class="d-md-flex">
-        <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-200 mb-md-0 border-bottom-0">
-            <li class="nav-item"><a href="#vertical-left-fields" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Fields</a></li>
-            <li class="nav-item"><a href="#vertical-left-template" class="nav-link" data-toggle="tab"><i class="icon-html52 mr-2"></i> Email Template</a></li>
-            <li class="mt-0 mb-2">
-                <hr class="m-0">
-            </li>
-            <li class="list-inline-item mr-2 ml-0">
-                <button class="btn btn-outline-primary btn-sm m-1 btn-block"><i class="icon-floppy-disk"></i><span class="d-none d-lg-inline-block ml-2">{{ button_label|default('Save') }}</span></button>
-            </li>
-            <li class="list-inline-item mr-2 ml-0">
-                <button class="btn btn-outline-primary btn-sm m-1 btn-block"><i class="icon-rotate-ccw3"></i><span class="d-none d-lg-inline-block ml-2">Reset</span></button>
-            </li>
-        </ul>
+        <div class="d-md-flex">
+            <ul class="nav nav-tabs nav-tabs-vertical flex-column mr-md-3 wmin-md-200 mb-md-0 border-bottom-0">
+                <li class="nav-item"><a href="#vertical-left-fields" class="nav-link active" data-toggle="tab"><i class="icon-menu7 mr-2"></i> Fields</a></li>
+                <li class="nav-item"><a href="#vertical-left-template" class="nav-link" data-toggle="tab"><i class="icon-html52 mr-2"></i> Email Template</a></li>
+                <li class="mt-0 mb-2">
+                    <hr class="m-0">
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    <button class="btn btn-outline-primary btn-sm m-1 btn-block" type="submit"><i class="icon-floppy-disk"></i><span class="d-none d-lg-inline-block ml-2">{{ button_label|default('Save') }}</span></button>
+                </li>
+                <li class="list-inline-item mr-2 ml-0">
+                    <button class="btn btn-outline-primary btn-sm m-1 btn-block" type="reset"><i class="icon-rotate-ccw3"></i><span class="d-none d-lg-inline-block ml-2">Reset</span></button>
+                </li>
+            </ul>
 
-        <div class="tab-content" style="width: 100%">
-            <div class="tab-pane fade active show" id="vertical-left-fields">
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <span class="font-size-sm text-uppercase font-weight-semibold">{{ email_template.identifier }}</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Enter Name:</label>
-                            <div class="col-lg-10">
-                                {{ form_widget(form.name, {'attr': {}}) }}
+            <div class="tab-content" style="width: 100%">
+                <div class="tab-pane fade active show" id="vertical-left-fields">
+                    <div class="card">
+                        {% if email_template.identifier is defined and  email_template.identifier %}
+                            <div class="card-header bg-light">
+                                <span class="font-size-sm text-uppercase font-weight-semibold">{{ email_template.identifier }}</span>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Subject:</label>
-                            <div class="col-lg-10">
-                                {{ form_widget(form.subject, {'attr': {}}) }}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Sender's Email Address:</label>
-                            <div class="col-lg-10">
-                                {{ form_widget(form.sender_email, {'attr': {}}) }}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Sender's Name:</label>
-                            <div class="col-lg-10">
-                                {{ form_widget(form.sender_name, {'attr': {}}) }}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Current Status:</label>
-                            <div class="col-lg-10">
-                                <div class="form-check form-check-switch form-check-switch-left">
-                                    <label class="form-check-label d-flex align-items-center">
-                                        {{ form_widget(form.status, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Active', 'data-off-text': 'Inactive', 'class': 'form-check-input-switch' }}) }}
-                                    </label>
+                        {% endif %}
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Enter Name:</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.name, {'attr': {}}) }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Current Status:</label>
-                            <div class="col-lg-10">
-                                <div class="form-check form-check-switch form-check-switch-left">
-                                    <label class="form-check-label d-flex align-items-center">
-                                        {{ form_widget(form.has_layout, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Yes', 'data-off-text': 'No', 'class': 'form-check-input-switch' }}) }}
-                                    </label>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Subject:</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.subject, {'attr': {}}) }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-2 col-form-label">Send Hidden Copy To:</label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Sender's Email Address:</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.sender_email, {'attr': {}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Sender's Name:</label>
+                                <div class="col-lg-10">
+                                    {{ form_widget(form.sender_name, {'attr': {}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Current Status:</label>
+                                <div class="col-lg-10">
+                                    <div class="form-check form-check-switch form-check-switch-left">
+                                        <label class="form-check-label d-flex align-items-center">
+                                            {{ form_widget(form.status, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Active', 'data-off-text': 'Inactive', 'class': 'form-check-input-switch' }}) }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Current Status:</label>
+                                <div class="col-lg-10">
+                                    <div class="form-check form-check-switch form-check-switch-left">
+                                        <label class="form-check-label d-flex align-items-center">
+                                            {{ form_widget(form.has_layout, {'attr': {'data-on-color': 'primary', 'data-off-color': 'default', 'data-on-text': 'Yes', 'data-off-text': 'No', 'class': 'form-check-input-switch' }}) }}
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade" id="vertical-left-template">
+                <div class="tab-pane fade" id="vertical-left-template">
                     <div class="mb-3">
                         {{ form_widget(form.body_html, {'attr': {}}) }}
-{#                        <textarea name="editor-full" id="editor-full" rows="4" cols="4">#}
-{#                            {{ email_template.bodyHtml }}#}
-{#                        </textarea>#}
                     </div>
+                </div>
+
+                <div class="tab-pane fade" id="vertical-left-tags">
+
+                </div>
             </div>
-
-            <div class="tab-pane fade" id="vertical-left-tags">
-
-            </div>
-
         </div>
     </div>
-</div>
 </div>
 {{ form_end(form) }}

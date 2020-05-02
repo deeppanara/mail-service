@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EmailLog{% endblock %}
+
+{% block body %}
+    <h1>EmailLog</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ email_log.id }}</td>
+            </tr>
+            <tr>
+                <th>Template_id</th>
+                <td>{{ email_log.templateId }}</td>
+            </tr>
+            <tr>
+                <th>Queue_id</th>
+                <td>{{ email_log.queueId }}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+                <td>{{ email_log.subject }}</td>
+            </tr>
+            <tr>
+                <th>Expected_sent_time</th>
+                <td>{{ email_log.expectedSentTime }}</td>
+            </tr>
+            <tr>
+                <th>Real_sent_at</th>
+                <td>{{ email_log.realSentAt }}</td>
+            </tr>
+            <tr>
+                <th>Is_sent</th>
+                <td>{{ email_log.isSent ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Error</th>
+                <td>{{ email_log.error ? email_log.error|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>MailTo</th>
+                <td>{{ email_log.mailTo ? email_log.mailTo|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ email_log.content }}</td>
+            </tr>
+            <tr>
+                <th>Cc</th>
+                <td>{{ email_log.cc ? email_log.cc|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Bcc</th>
+                <td>{{ email_log.bcc ? email_log.bcc|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mail_from</th>
+                <td>{{ email_log.mailFrom ? email_log.mailFrom|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Reply_to</th>
+                <td>{{ email_log.replyTo ? email_log.replyTo|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Custom_tags</th>
+                <td>{{ email_log.customTags ? email_log.customTags|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Attachments</th>
+                <td>{{ email_log.attachments ? email_log.attachments|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Headers</th>
+                <td>{{ email_log.headers ? email_log.headers|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ email_log.createdAt }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ email_log.updatedAt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('email_log_index') }}">back to list</a>
+
+    <a href="{{ path('email_log_edit', {'id': email_log.id}) }}">edit</a>
+
+    {{ include('email_log/_delete_form.html.twig') }}
+{% endblock %}

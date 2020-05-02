@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block header_title %}
+    <span class="font-weight-semibold">EmailLog </span> - index
+{% endblock header_title %}
+
+{% block body %}
+    <!-- Single line -->
+    <div class="card">
+        <div class="card-header bg-transparent header-elements-inline">
+            <h6 class="card-title">My Inbox (single line)</h6>
+        </div>
+
+        <!-- Action toolbar -->
+        <div class="navbar navbar-light navbar-expand-lg shadow-0 py-lg-2">
+            <div class="text-center d-lg-none w-100">
+                <button type="button" class="navbar-toggler w-100" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                    <i class="icon-circle-down2"></i>
+                </button>
+            </div>
+
+            <div class="navbar-collapse text-center text-lg-left flex-wrap collapse" id="inbox-toolbar-toggle-single">
+                <div class="mt-3 mt-lg-0">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-light btn-icon btn-checkbox-all">
+                            <input type="checkbox" class="form-input-styled" data-fouc>
+                        </button>
+
+                        <button type="button" class="btn btn-light btn-icon dropdown-toggle" data-toggle="dropdown"></button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Select all</a>
+                            <a href="#" class="dropdown-item">Clear selection</a>
+                        </div>
+                    </div>
+
+                    <div class="btn-group ml-3 mr-lg-3">
+                        <button type="button" class="btn btn-light"><i class="icon-bin"></i> <span class="d-none d-lg-inline-block ml-2">Delete</span></button>
+                    </div>
+                </div>
+
+                <div class="navbar-text ml-lg-auto"><span class="font-weight-semibold">1-50</span> of <span class="font-weight-semibold">528</span></div>
+
+                <div class="ml-lg-3 mb-3 mb-lg-0">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-light btn-icon disabled"><i class="icon-arrow-left12"></i></button>
+                        <button type="button" class="btn btn-light btn-icon"><i class="icon-arrow-right13"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /action toolbar -->
+
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="table table-inbox">
+                <tbody data-link="row" class="rowlink">
+                {% for email_log in email_logs %}
+                    <tr class="unread">
+                        <td class="table-inbox-checkbox rowlink-skip">
+                            <input type="checkbox" class="form-input-styled" data-fouc>
+                        </td>
+
+                        <td class="table-inbox-name">
+                            <a href="mail_read.html">
+                                <div class="letter-icon-title text-default">{{ email_log.subject}}</div>
+                            </a>
+                        </td>
+                        <td class="table-inbox-message">
+                            <span class="badge badge-light badge-striped badge-striped-left mb-1">From</span>
+                            <span class="text-muted font-weight-normal">{{ email_log.mailFrom|format_mail }}</span>
+                            <br />
+                            <span class="badge badge-light badge-striped badge-striped-left mb-1">To</span>
+                            <span class="text-muted font-weight-normal">{{ email_log.mailTo|format_mail }}</span>
+                        </td>
+                        <td class="table-inbox-time">
+                            {{ email_log.expectedSentTime|format_time }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!-- /table -->
+
+    </div>
+    <!-- /single line -->
+{% endblock %}

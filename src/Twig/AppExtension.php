@@ -42,13 +42,32 @@ class AppExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('time_diff', [$this, 'timeDiffFilter']),
+            new TwigFilter('format_time', [$this, 'FormatTime']),
+            new TwigFilter('format_mail', [$this, 'formatMail']),
         ];
     }
 
-    public function timeDiffFilter($timestemp)
+    public function FormatTime($timestemp)
     {
-        return Carbon::createFromTimestamp($timestemp)->diffForHumans();
+        if (Carbon::createFromTimestamp($timestemp)->diffInHours(Carbon::now()) < 24) {
+            return Carbon::createFromTimestamp($timestemp)->format('h:i A');
+        } else {
+            return Carbon::createFromTimestamp($timestemp)->format('d M');
+        }
+    }
+
+    public function formatMail($mails, $saprator = ', ')
+    {
+        if(array_key_exists('email',$mails)) {
+            $mails = [$mails];
+        }
+
+        $formated = [];
+        foreach ($mails as $mail) {
+            $formated[] = sprintf("%s <%s>", $mail['name'], $mail['email']);
+        }
+
+        return implode($saprator, $formated) ?? null;
     }
 
     public function getAssetPath(string $path): string

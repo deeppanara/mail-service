@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New EmailTemplate{% endblock %}
+{% block header_title %}
+    <a class="btn-large" href="{{ path('email_template_index') }}"><i class="icon-arrow-left52 mr-2"></i></a>
+    Edit EmailTemplate #{{ email_template.id }}
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('global_assets/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
 
 {% block body %}
-    <h1>Create new EmailTemplate</h1>
-
-    {{ include('email_template/_form.html.twig') }}
-
-    <a href="{{ path('email_template_index') }}">back to list</a>
+    {{ include('email_template/_form.html.twig', {'button_label': 'Update'}) }}
 {% endblock %}
